@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:divider="@drawable/bar_icon_separator"
+        android:elevation="10dp"
         android:orientation="horizontal"
         android:paddingBottom="27px"
         android:paddingTop="27px"
-        android:elevation="10dp"
         android:showDividers="middle">
 
         <ImageButton
@@ -75,15 +75,29 @@
             tools:context=".MapsActivity"
             tools:layout="@layout/activity_maps" />
 
-        <ImageView
+        <LinearLayout
+            android:id="@+id/wifilistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/list_icon" />
+            android:orientation="horizontal">
 
-        <ImageView
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/list_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/settings_icon" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/settings_icon" />
+        </LinearLayout>
 
     </ViewFlipper>
 </LinearLayout>
