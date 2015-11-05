@@ -271,6 +271,7 @@
                     android:paddingTop="50px"
                     android:text="Privacy Policy"
                     android:textColor="#FFFFFF" />
+
             </LinearLayout>
         </ScrollView>
     </ViewFlipper>

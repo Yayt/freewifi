@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -121,23 +124,11 @@ public class MapsActivity extends FragmentActivity {
 
 
         //json read
-
+        InputStream in = null;
         String json = null;
         try {
-
-            InputStream is = getAssets().open("inout_wlan.json");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-            // Log.i("MyActivity", json);
-
+            in = new BufferedInputStream(new FileInputStream("wlan_inout.json"));
+            JsonReader reader=new JsonReader(new InputStreamReader(in,"UTF-8"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -149,7 +140,7 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onMyLocationChange(Location location) {
                 mMyLocation = location;
-                if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and foucus
+                if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and fucus
                     mMyLocationCentering = true;
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
                     mMap.animateCamera(cameraUpdate);
