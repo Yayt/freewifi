@@ -114,26 +114,159 @@
             android:id="@+id/settingsPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#4F4F4F"
-            android:orientation="vertical">
+            android:background="@drawable/settingsgradient"
+            android:divider="@drawable/whitedivider"
+            android:dividerHeight="1px"
+            android:orientation="vertical"
+            android:showDividers="beginning|middle|end">
 
-<!--TODO: Linearlayout with vertical gradient-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="50px"
+                android:paddingLeft="100px"
+                android:paddingTop="50px">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Log In with Google" />
+                    android:fontFamily="sans-serif"
+                    android:text="Log In with Google"
+                    android:textColor="#FFFFFF" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/google"/>
+                    android:layout_gravity="end"
+                    android:foregroundGravity="right|center_vertical"
+                    android:src="@drawable/google" />
             </LinearLayout>
-        </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#3a363b"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="100px"
+                android:text="MAIN SETTINGS"
+                android:textColor="#b2b2b2" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50px"
+                android:paddingLeft="50px"
+                android:paddingTop="50px">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Unit of length"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/unitOfLengthUsed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Kilometers"
+                    android:textColor="#919191" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50px"
+                android:paddingLeft="50px"
+                android:paddingTop="50px">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Disable ads"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Get premium"
+                    android:textColor="#919191" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50px"
+                android:paddingLeft="50px"
+                android:paddingTop="50px">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Feedback"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="50px"
+                    android:text="Help us to improve"
+                    android:textColor="#919191" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingBottom="50px"
+                android:paddingLeft="100px"
+                android:paddingTop="50px"
+                android:text="Rate the app"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#3a363b"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="100px"
+                android:text="ABOUT"
+                android:textColor="#b2b2b2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingBottom="50px"
+                android:paddingLeft="100px"
+                android:paddingTop="50px"
+                android:text="About us"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingBottom="50px"
+                android:paddingLeft="100px"
+                android:paddingTop="50px"
+                android:text="Privacy Policy"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
     </ViewFlipper>
 </LinearLayout>
