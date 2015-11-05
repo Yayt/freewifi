@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -222,18 +224,24 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void switchToList(View view) {
-        ViewFlipper vf = (ViewFlipper) findViewById( R.id.viewFlipper );
-        vf.setDisplayedChild(1);
+        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        if (vf.getDisplayedChild() != 1) {
+            vf.setDisplayedChild(1);
+        }
     }
 
     public void switchToMap(View view) {
-        ViewFlipper vf = (ViewFlipper) findViewById( R.id.viewFlipper );
-        vf.setDisplayedChild(0);
+        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        if (vf.getDisplayedChild() != 0) {
+            vf.setDisplayedChild(0);
+        }
     }
 
     public void switchToSettings(View view) {
-        ViewFlipper vf = (ViewFlipper) findViewById( R.id.viewFlipper );
-        vf.setDisplayedChild(2);
+        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        if (vf.getDisplayedChild() != 2) {
+            vf.setDisplayedChild(2);
+        }
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {

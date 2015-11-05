@@ -15,6 +15,7 @@
         android:orientation="horizontal"
         android:paddingBottom="27px"
         android:paddingTop="27px"
+        android:elevation="10dp"
         android:showDividers="middle">
 
         <ImageButton
@@ -59,6 +60,7 @@
 
     </LinearLayout>
 
+
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
@@ -76,7 +78,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_media_pause" />
+            android:src="@drawable/list_icon" />
 
         <ImageView
             android:layout_width="match_parent"
