@@ -81,6 +81,28 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <LinearLayout
+                android:id="@+id/filterbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F18626"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/filterbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68px"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="10px"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/sorting_icon" />
+            </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
