@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#423c44"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:divider="@drawable/bar_icon_separator"
+        android:orientation="horizontal"
+        android:paddingBottom="27px"
+        android:paddingTop="27px"
+        android:showDividers="middle">
+
+        <ImageButton
+            android:id="@+id/MapViewButton"
+            android:layout_width="86px"
+            android:layout_height="86px"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:foregroundGravity="center_horizontal"
+
+            android:onClick="switchToMap"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map_icon"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/listViewButton"
+            android:layout_width="86px"
+            android:layout_height="86px"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:onClick="switchToList"
+            android:scaleType="fitCenter"
+            android:src="@drawable/list_icon"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="86px"
+            android:layout_height="86px"
+            android:layout_centerVertical="true"
+
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:onClick="switchToSettings"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_icon"></ImageButton>
+
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MapsActivity"
+            tools:layout="@layout/activity_maps" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_media_pause" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/settings_icon" />
+
+    </ViewFlipper>
+</LinearLayout>
