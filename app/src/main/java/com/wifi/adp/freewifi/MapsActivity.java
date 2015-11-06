@@ -124,14 +124,23 @@ public class MapsActivity extends FragmentActivity {
 
 
         //json read
-        InputStream in = null;
         String json = null;
         try {
-            in = new BufferedInputStream(new FileInputStream("wlan_inout.json"));
-            JsonReader reader=new JsonReader(new InputStreamReader(in,"UTF-8"));
-
+            BufferedReader in = new BufferedReader(new InputStreamReader(this.getAssets().open("inout_wlan.json")));
+            String line;
+            String str = "";
+            while ((line = in.readLine()) != null) {
+                str += line;
+            }
+            JSONArray jo = new JSONArray(str);
+            for(int i = 0; i < jo.length();i++){
+                JSONObject ja = jo.getJSONObject(i);
+                Log.i("LocationName", ja.getString("name_en"));
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
 
@@ -140,7 +149,7 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onMyLocationChange(Location location) {
                 mMyLocation = location;
-                if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and fucus
+                if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
                     mMyLocationCentering = true;
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
                     mMap.animateCamera(cameraUpdate);
