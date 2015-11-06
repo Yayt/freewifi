@@ -68,10 +68,12 @@ public class MapsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+
+        //On marker click listener which routes and open bottom info bar
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                // TODO Auto-generated method stub
+                //TODO: Add bottom bar
                 //test static route for demo
                     /*
                     LatLng ll = marker.getPosition();
@@ -143,7 +145,6 @@ public class MapsActivity extends FragmentActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
@@ -243,6 +244,9 @@ public class MapsActivity extends FragmentActivity {
         if (vf.getDisplayedChild() != 2) {
             vf.setDisplayedChild(2);
         }
+    }
+
+    public void openFilters(View view) {
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {

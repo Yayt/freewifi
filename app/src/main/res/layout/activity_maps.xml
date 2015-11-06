@@ -98,6 +98,7 @@
                     android:layout_marginBottom="10px"
                     android:layout_marginLeft="30px"
                     android:layout_marginTop="10px"
+                    android:onClick="openFilters"
                     android:adjustViewBounds="true"
                     android:background="@null"
                     android:scaleType="fitCenter"
