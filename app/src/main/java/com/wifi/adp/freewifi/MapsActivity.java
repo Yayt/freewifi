@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -31,6 +33,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,11 +48,23 @@ public class MapsActivity extends FragmentActivity {
     public static String info_A = "";
     public static String info_B = "";
 
+    //Wifilistview stuff
+    ArrayAdapter<String> adapter;
+    ArrayList<String> itemList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+
+        //Wifilistview stuff (test)
+        String[] items = {"Apple", "Banana", "Clementine"};
+        itemList = new ArrayList<String>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(this, R.layout.activity_maps, R.id.list, itemList);
+        ListView listV = (ListView) findViewById(R.id.list);
+//        listV.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
 
         //On marker click listener which routes and open bottom info bar
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -60,7 +75,6 @@ public class MapsActivity extends FragmentActivity {
                 return false;
             }
         });
-
     }
 
     private void openInfoBar(Marker marker) {
@@ -126,30 +140,27 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void routeSearch(Marker marker) {
-        LatLng origin = new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude());
-        LatLng dest = marker.getPosition();
+        //Check if the user's location has been determined
+        if (mMyLocation != null) {
+            LatLng origin = new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude());
+            LatLng dest = marker.getPosition();
 
-        String url = getDirectionsUrl(origin, dest);
-        DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute(url);
-
+            String url = getDirectionsUrl(origin, dest);
+            DownloadTask downloadTask = new DownloadTask();
+            downloadTask.execute(url);
+        }
     }
 
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-
         String sensor = "sensor=false";
-
         //パラメータ
         String parameters = str_origin + "&" + str_dest + "&" + sensor + "&language=ja" + "&mode=" + "walking";
 
         //JSON指定
         String output = "json";
-
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
-
         return url;
     }
 

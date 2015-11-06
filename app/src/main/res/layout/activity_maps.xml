@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#423c44"
     android:orientation="vertical"
+    tools:context=".MapsActivity"
     android:paddingLeft="0dp"
     android:paddingRight="0dp">
 
@@ -106,10 +107,10 @@
             </LinearLayout>
 
             <ListView
-                android:id="@+id/wifilist"
-                android:layout_width="fill_parent"
-                android:divider="@drawable/separator_vertical"
-                android:layout_height="wrap_content" />
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
 
         </LinearLayout>
 
