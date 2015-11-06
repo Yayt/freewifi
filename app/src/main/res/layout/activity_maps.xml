@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#F5F2E5"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/filterbox"
@@ -98,17 +98,19 @@
                     android:layout_marginBottom="10px"
                     android:layout_marginLeft="30px"
                     android:layout_marginTop="10px"
-                    android:onClick="openFilters"
                     android:adjustViewBounds="true"
                     android:background="@null"
+                    android:onClick="openFilters"
                     android:scaleType="fitCenter"
                     android:src="@drawable/sorting_icon" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/list_icon" />
+            <ListView
+                android:id="@+id/wifilist"
+                android:layout_width="fill_parent"
+                android:divider="@drawable/separator_vertical"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
         <ScrollView
@@ -154,7 +156,7 @@
                     android:background="#3a363b"
                     android:fontFamily="sans-serif"
                     android:paddingLeft="100px"
-                    android:text="MAIN SETTINGS"
+                    android:text="@string/main_settings"
                     android:textColor="#b2b2b2" />
 
                 <LinearLayout

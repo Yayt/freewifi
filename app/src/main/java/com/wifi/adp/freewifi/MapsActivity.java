@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,9 +19,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -98,6 +101,7 @@ public class MapsActivity extends FragmentActivity {
             for (int i = 0; i < jo.length(); i++) {
                 JSONObject ja = jo.getJSONObject(i);
 //                Log.i("LocationName", ja.getString("name_en"));
+                //TODO Add to item to listview here?
                 mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
             }
         } catch (IOException ex) {
