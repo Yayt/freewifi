@@ -111,16 +111,16 @@ public class MapsActivity extends FragmentActivity {
 
     private void setUpMap() {
         //test limited date for demo
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.16736, 24.946413)).title("WLAN base station at Esplanadi").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.217216, 24.887)).title("Riistavuori comprehensive service centre Service Centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.25529, 24.99727)).title("Northern activity centre for kin care").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.229687, 24.883745)).title("Western social work  Haaga").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.2235, 25.075596)).title("Myllypuro neighbourhood station").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.16822, 24.92685)).title("Kamppi service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.189045, 24.889673)).title("Munkkiniemi service centre Meilahti recreation centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.201553, 24.876307)).title("Munkkiniemi service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.188896, 24.962563)).title("Kinapori comprehensive service centre Service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(60.212097, 25.07988)).title("Itäkeskus Library").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.16736, 24.946413)).title("WLAN base station at Esplanadi").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.217216, 24.887)).title("Riistavuori comprehensive service centre Service Centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.25529, 24.99727)).title("Northern activity centre for kin care").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.229687, 24.883745)).title("Western social work  Haaga").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.2235, 25.075596)).title("Myllypuro neighbourhood station").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.16822, 24.92685)).title("Kamppi service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.189045, 24.889673)).title("Munkkiniemi service centre Meilahti recreation centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.201553, 24.876307)).title("Munkkiniemi service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.188896, 24.962563)).title("Kinapori comprehensive service centre Service centre").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(60.212097, 25.07988)).title("Itäkeskus Library").icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
 
 
         //json read
@@ -133,9 +133,10 @@ public class MapsActivity extends FragmentActivity {
                 str += line;
             }
             JSONArray jo = new JSONArray(str);
-            for(int i = 0; i < jo.length();i++){
+            for (int i = 0; i < jo.length(); i++) {
                 JSONObject ja = jo.getJSONObject(i);
-                Log.i("LocationName", ja.getString("name_en"));
+//                Log.i("LocationName", ja.getString("name_en"));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
