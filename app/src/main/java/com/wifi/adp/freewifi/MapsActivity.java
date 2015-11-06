@@ -54,7 +54,6 @@ public class MapsActivity extends FragmentActivity {
     private static boolean mMyLocationCentering = false;
     private Polyline line = null;
 
-
     private static final int MENU_A = 0;
     private static final int MENU_B = 1;
     private static final int MENU_c = 2;
@@ -85,6 +84,7 @@ public class MapsActivity extends FragmentActivity {
                     i.setData(uri);
                     startActivity(i);
                     */
+                marker.getTitle();
                 routeSearch(marker);
                 return false;
             }
@@ -162,28 +162,21 @@ public class MapsActivity extends FragmentActivity {
 
     private void routeSearch(Marker marker) {
 
-
         LatLng origin = new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude());
         LatLng dest = marker.getPosition();
-
 
         String url = getDirectionsUrl(origin, dest);
 
         DownloadTask downloadTask = new DownloadTask();
-
 
         downloadTask.execute(url);
 
     }
 
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
-
-
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
 
-
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-
 
         String sensor = "sensor=false";
 
@@ -192,7 +185,6 @@ public class MapsActivity extends FragmentActivity {
 
         //JSON指定
         String output = "json";
-
 
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
