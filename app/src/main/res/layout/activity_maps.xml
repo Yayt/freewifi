@@ -11,9 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1.8"
         android:baselineAligned="false"
         android:divider="@drawable/bar_icon_separator"
-        android:layout_weight="1.8"
         android:orientation="horizontal"
         android:paddingBottom="27px"
         android:paddingTop="27px"
@@ -64,8 +64,8 @@
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -133,8 +133,10 @@
                 android:showDividers="beginning|middle|end">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:orientation="horizontal"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
@@ -144,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Log In with Google"
+                        android:text="@string/log_in_with_google"
                         android:textColor="#FFFFFF" />
 
                     <ImageView
@@ -165,8 +167,10 @@
                     android:textColor="#b2b2b2" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:orientation="vertical"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
@@ -191,8 +195,10 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:orientation="vertical"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
@@ -216,8 +222,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="sendFeedback"
                     android:orientation="vertical"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
@@ -243,6 +252,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
@@ -263,6 +274,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
@@ -273,6 +286,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"

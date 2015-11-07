@@ -1,7 +1,9 @@
 package com.wifi.adp.freewifi;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -200,6 +202,13 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openFilters(View view) {
+    }
+
+    public void sendFeedback(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "kevinmarczyk@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback Wifi Helsinki");
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
