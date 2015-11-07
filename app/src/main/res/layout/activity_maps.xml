@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:divider="@drawable/bar_icon_separator"
-        android:elevation="10dp"
+        android:layout_weight="2"
         android:orientation="horizontal"
         android:paddingBottom="27px"
         android:paddingTop="27px"
@@ -21,8 +21,8 @@
 
         <ImageButton
             android:id="@+id/MapViewButton"
-            android:layout_width="86px"
-            android:layout_height="86px"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
@@ -35,8 +35,8 @@
 
         <ImageButton
             android:id="@+id/listViewButton"
-            android:layout_width="86px"
-            android:layout_height="86px"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
@@ -48,8 +48,8 @@
 
         <ImageButton
             android:id="@+id/settingsButton"
-            android:layout_width="86px"
-            android:layout_height="86px"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
@@ -61,16 +61,15 @@
 
     </LinearLayout>
 
-
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="match_parent">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
-            class = "com.google.android.gms.maps.SupportMapFragment"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -110,6 +109,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="match_parent"

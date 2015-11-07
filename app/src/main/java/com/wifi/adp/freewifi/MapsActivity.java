@@ -62,9 +62,6 @@ public class MapsActivity extends FragmentActivity {
                 return false;
             }
         });
-
-
-
     }
 
     private void openInfoBar(Marker marker) {
@@ -105,7 +102,7 @@ public class MapsActivity extends FragmentActivity {
             for (int i = 0; i < jo.length(); i++) {
                 JSONObject ja = jo.getJSONObject(i);
 //                Log.i("LocationName", ja.getString("name_en"));
-                //TODO Add to item to listview here?
+                //TODO Add to item to some list array here?
                 mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
             }
         } catch (IOException ex) {
