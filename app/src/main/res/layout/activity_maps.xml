@@ -171,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:onClick="switchUnits"
                     android:orientation="vertical"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
@@ -190,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="50px"
-                        android:text="Kilometers"
+                        android:text="Metric"
                         android:textColor="#919191" />
                 </LinearLayout>
 
@@ -258,6 +259,7 @@
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
                     android:paddingTop="50px"
+                    android:onClick="openPlayStore"
                     android:text="Rate the app"
                     android:textColor="#FFFFFF" />
 

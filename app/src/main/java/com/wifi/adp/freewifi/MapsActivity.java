@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -209,6 +210,26 @@ public class MapsActivity extends FragmentActivity {
                 "mailto", "kevinmarczyk@gmail.com", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback Wifi Helsinki");
         startActivity(Intent.createChooser(emailIntent, "Send email..."));
+    }
+
+    public void switchUnits(View view) {
+        //TODO Actually switch units instead of only showing it
+        TextView unitText = (TextView) findViewById(R.id.unitOfLengthUsed);
+        if (unitText.getText().equals("Metric")) {
+            unitText.setText("Imperial");
+        } else {
+            unitText.setText("Metric");
+        }
+
+    }
+
+    public void openPlayStore(View view) {
+        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
