@@ -33,7 +33,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,23 +47,11 @@ public class MapsActivity extends FragmentActivity {
     public static String info_A = "";
     public static String info_B = "";
 
-    //Wifilistview stuff
-    ArrayAdapter<String> adapter;
-    ArrayList<String> itemList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
-
-        //Wifilistview stuff (test)
-        String[] items = {"Apple", "Banana", "Clementine"};
-        itemList = new ArrayList<String>(Arrays.asList(items));
-        adapter = new ArrayAdapter<String>(this, R.layout.activity_maps, R.id.list, itemList);
-        ListView listV = (ListView) findViewById(R.id.list);
-//        listV.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
 
         //On marker click listener which routes and open bottom info bar
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -75,6 +62,9 @@ public class MapsActivity extends FragmentActivity {
                 return false;
             }
         });
+
+
+
     }
 
     private void openInfoBar(Marker marker) {
@@ -198,6 +188,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void switchToMap(View view) {
+        setUpMapIfNeeded();
         ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
         if (vf.getDisplayedChild() != 0) {
             vf.setDisplayedChild(0);
@@ -272,41 +263,41 @@ public class MapsActivity extends FragmentActivity {
             PolylineOptions lineOptions = null;
             MarkerOptions markerOptions = new MarkerOptions();
 
-            if (result.size() != 0) {
+            if (result != null) {
+                if (result.size() != 0) {
 
-                for (int i = 0; i < result.size(); i++) {
-                    points = new ArrayList<LatLng>();
-                    lineOptions = new PolylineOptions();
+                    for (int i = 0; i < result.size(); i++) {
+                        points = new ArrayList<LatLng>();
+                        lineOptions = new PolylineOptions();
 
+                        List<HashMap<String, String>> path = result.get(i);
 
-                    List<HashMap<String, String>> path = result.get(i);
+                        for (int j = 0; j < path.size(); j++) {
+                            HashMap<String, String> point = path.get(j);
 
+                            double lat = Double.parseDouble(point.get("lat"));
+                            double lng = Double.parseDouble(point.get("lng"));
+                            LatLng position = new LatLng(lat, lng);
 
-                    for (int j = 0; j < path.size(); j++) {
-                        HashMap<String, String> point = path.get(j);
+                            points.add(position);
+                        }
 
-                        double lat = Double.parseDouble(point.get("lat"));
-                        double lng = Double.parseDouble(point.get("lng"));
-                        LatLng position = new LatLng(lat, lng);
+                        //polyline
+                        lineOptions.addAll(points);
+                        lineOptions.width(10);
+                        lineOptions.color(0x550000ff);
 
-                        points.add(position);
                     }
 
-                    //polyline
-                    lineOptions.addAll(points);
-                    lineOptions.width(10);
-                    lineOptions.color(0x550000ff);
-
+                    //draw and remove previous polyline
+                    if (line != null) {
+                        line.remove();
+                    }
+                    line = mMap.addPolyline(lineOptions);
+                } else {
+                    mMap.clear();
+                    Toast.makeText(MapsActivity.this, "ルート情報を取得できませんでした", Toast.LENGTH_LONG).show();
                 }
-
-                //draw and remove previous polyline
-                if (line != null) {
-                    line.remove();
-                }
-                line = mMap.addPolyline(lineOptions);
-            } else {
-                mMap.clear();
-                Toast.makeText(MapsActivity.this, "ルート情報を取得できませんでした", Toast.LENGTH_LONG).show();
             }
 
 
