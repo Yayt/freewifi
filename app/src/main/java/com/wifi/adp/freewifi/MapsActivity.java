@@ -1,5 +1,6 @@
 package com.wifi.adp.freewifi;
 
+import android.app.ListActivity;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -300,4 +300,6 @@ public class MapsActivity extends FragmentActivity {
 
         }
     }
+
+
 }

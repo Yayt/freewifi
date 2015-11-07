@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:divider="@drawable/bar_icon_separator"
-        android:layout_weight="2"
+        android:layout_weight="1.8"
         android:orientation="horizontal"
         android:paddingBottom="27px"
         android:paddingTop="27px"
