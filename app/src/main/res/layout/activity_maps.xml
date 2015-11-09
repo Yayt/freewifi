@@ -67,11 +67,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="4">
+            android:layout_height="match_parent">
 
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -79,32 +77,73 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_gravity="top"
                 tools:context=".MapsActivity"
                 tools:layout="@layout/activity_maps"></fragment>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/infobar"
                 android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="3"
-                android:background="#FFFFFF"
-                android:orientation="horizontal">
+                android:layout_height="0dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/infobargradient"
+                android:foregroundGravity="bottom"
+                android:gravity="bottom"
+                android:minHeight="200px">
+
+                <ImageView
+                    android:id="@+id/wifilogoicon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="40px"
+                    android:src="@drawable/open_wifi_icon" />
 
                 <TextView
                     android:id="@+id/wifiname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/startNavigating"
+                    android:layout_toRightOf="@+id/wifilogoicon"
+                    android:paddingBottom="20px"
+                    android:paddingStart="120px"
+                    android:paddingTop="20px"
+                    android:textColor="#00ACAD"
+                    android:textSize="70px" />
 
-                <TextView
-                    android:id="@+id/wifidistance"
+                <LinearLayout
+                    android:id="@+id/startNavigating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_weight="1"
-                    android:text="100 METER" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:onClick="startNavigation"
+                    android:orientation="vertical"
+                    android:paddingBottom="20px"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:foregroundGravity="center_horizontal"
+                        android:src="@drawable/walkingguy" />
+
+                    <TextView
+                        android:id="@+id/wifidistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#00ACAD"
+                        android:textSize="48px" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
 
 
         <LinearLayout

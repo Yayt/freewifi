@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -47,7 +50,8 @@ public class MapsActivity extends FragmentActivity {
     private static Location mMyLocation = null;
     private static boolean mMyLocationCentering = false;
     private Polyline line = null;
-
+    public ViewFlipper vf;
+    public boolean useMetric = true;
     public static String posinfo = "";
     public static String info_A = "";
     public static String info_B = "";
@@ -58,44 +62,48 @@ public class MapsActivity extends FragmentActivity {
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
 
-        //On marker click listener which routes and open bottom info bar
+        //On marker click listener which routes and opens bottom info bar
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                openInfoBar(marker);
                 routeSearch(marker);
                 return false;
             }
         });
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng latlong){
+            public void onMapClick(LatLng latlong) {
                 hideInfoBar();
             }
         });
+        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
     }
 
     private void hideInfoBar() {
-        LinearLayout infobar = (LinearLayout) findViewById(R.id.infobar);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) infobar.getLayoutParams();
+        RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
 
-        //TODO change to weight
+        //TODO use SLOW animation
         params.height = 0;
     }
 
     private void openInfoBar(Marker marker) {
-        //TODO overlay infobar over mapfragment
-        //Changing to weight will fix the jumping around of the map since it wont have to resize.
         //TODO Add infobar shadow
+        //TODO use SLOW animation
 
-        LinearLayout infobar = (LinearLayout) findViewById(R.id.infobar);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) infobar.getLayoutParams();
+        RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
 
-        //TODO change to weight
-        params.height = 500;
+        //Use wrap_content
+        params.height = -2;
 
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
-        wifiNameText.setText(marker.getTitle());
+        wifiNameText.setText(marker.getTitle().toUpperCase());
+
+        //TODO Add distance check for longer then 1km -> display x.x km
+        //TODO Check if imperial or metric units
+        TextView distanceText = (TextView) findViewById(R.id.wifidistance);
+        distanceText.setText("100 m");
     }
 
     @Override
@@ -158,6 +166,9 @@ public class MapsActivity extends FragmentActivity {
     private void routeSearch(Marker marker) {
         //Check if the user's location has been determined
         if (mMyLocation != null) {
+            //TODO get distance and show in infobar
+            openInfoBar(marker);
+
             LatLng origin = new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude());
             LatLng dest = marker.getPosition();
 
@@ -207,7 +218,6 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void switchToList(View view) {
-        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
         if (vf.getDisplayedChild() != 1) {
             vf.setDisplayedChild(1);
         }
@@ -215,14 +225,12 @@ public class MapsActivity extends FragmentActivity {
 
     public void switchToMap(View view) {
         setUpMapIfNeeded();
-        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
         if (vf.getDisplayedChild() != 0) {
             vf.setDisplayedChild(0);
         }
     }
 
     public void switchToSettings(View view) {
-        ViewFlipper vf = (ViewFlipper) findViewById(R.id.viewFlipper);
         if (vf.getDisplayedChild() != 2) {
             vf.setDisplayedChild(2);
         }
@@ -243,8 +251,10 @@ public class MapsActivity extends FragmentActivity {
         TextView unitText = (TextView) findViewById(R.id.unitOfLengthUsed);
         if (unitText.getText().equals("Metric")) {
             unitText.setText("Imperial");
+            useMetric = false;
         } else {
             unitText.setText("Metric");
+            useMetric = true;
         }
 
     }
@@ -256,6 +266,10 @@ public class MapsActivity extends FragmentActivity {
         } catch (android.content.ActivityNotFoundException anfe) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
         }
+    }
+
+    public void startNavigation(View view) {
+        //TODO Start navigation
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
