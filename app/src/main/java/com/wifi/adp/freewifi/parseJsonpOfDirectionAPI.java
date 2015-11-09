@@ -35,12 +35,12 @@ public class parseJsonpOfDirectionAPI {
             for(int i=0;i<jsonRoutes.length();i++){
                 jsonLegs = ( (JSONObject)jsonRoutes.get(i)).getJSONArray("legs");
 
-                //スタート地点・住所
+                //Starting point
                 String s_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("start_address");
 
                 ma.info_A = s_address;
 
-                //到着地点・住所
+                //Destination point
                 String e_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("end_address");
 
                 ma.info_B = e_address;

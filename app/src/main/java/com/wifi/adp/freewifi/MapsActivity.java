@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -65,11 +67,35 @@ public class MapsActivity extends FragmentActivity {
                 return false;
             }
         });
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latlong){
+                hideInfoBar();
+            }
+        });
+    }
+
+    private void hideInfoBar() {
+        LinearLayout infobar = (LinearLayout) findViewById(R.id.infobar);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) infobar.getLayoutParams();
+
+        //TODO change to weight
+        params.height = 0;
     }
 
     private void openInfoBar(Marker marker) {
-        //TODO Add infobar here
-        marker.getTitle();
+        //TODO overlay infobar over mapfragment
+        //Changing to weight will fix the jumping around of the map since it wont have to resize.
+        //TODO Add infobar shadow
+
+        LinearLayout infobar = (LinearLayout) findViewById(R.id.infobar);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) infobar.getLayoutParams();
+
+        //TODO change to weight
+        params.height = 500;
+
+        TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
+        wifiNameText.setText(marker.getTitle());
     }
 
     @Override
