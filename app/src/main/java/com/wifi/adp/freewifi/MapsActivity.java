@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -51,6 +52,7 @@ public class MapsActivity extends FragmentActivity {
     private static boolean mMyLocationCentering = false;
     private Polyline line = null;
     public ViewFlipper vf;
+    public Marker currentMarker;
     public boolean useMetric = true;
     public static String posinfo = "";
     public static String info_A = "";
@@ -66,6 +68,9 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                //TODO Bounce marker/make icon bigger
+                //TODO remove bubble text with title
+                currentMarker = marker;
                 routeSearch(marker);
                 return false;
             }
@@ -87,23 +92,32 @@ public class MapsActivity extends FragmentActivity {
         params.height = 0;
     }
 
-    private void openInfoBar(Marker marker) {
+    private void openInfoBar(List<LatLng> path) {
         //TODO Add infobar shadow
         //TODO use SLOW animation
-
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
 
         //Use wrap_content
         params.height = -2;
+//        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
 
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
-        wifiNameText.setText(marker.getTitle().toUpperCase());
+        wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        //TODO Add distance check for longer then 1km -> display x.x km
         //TODO Check if imperial or metric units
         TextView distanceText = (TextView) findViewById(R.id.wifidistance);
-        distanceText.setText("100 m");
+        double distance = SphericalUtil.computeLength(path);
+        if (distance >= 1000) {
+            distance = distance / 100;
+            distance = Math.round(distance * 100) / 100;
+            distance = distance / 10;
+            distanceText.setText(distance + " km");
+        } else {
+            distance = Math.round(distance);
+            distanceText.setText(distance + " m");
+        }
+
     }
 
     @Override
@@ -166,9 +180,6 @@ public class MapsActivity extends FragmentActivity {
     private void routeSearch(Marker marker) {
         //Check if the user's location has been determined
         if (mMyLocation != null) {
-            //TODO get distance and show in infobar
-            openInfoBar(marker);
-
             LatLng origin = new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude());
             LatLng dest = marker.getPosition();
 
@@ -272,6 +283,9 @@ public class MapsActivity extends FragmentActivity {
         //TODO Start navigation
     }
 
+    public void openMoreInfo(View view) {
+    }
+
     private class DownloadTask extends AsyncTask<String, Void, String> {
         //get in AsyncTask
 
@@ -354,6 +368,8 @@ public class MapsActivity extends FragmentActivity {
                         lineOptions.width(10);
                         lineOptions.color(0x550000ff);
 
+                        //TODO Check if user has internet, if not, estimate distance
+                        openInfoBar(points);
                     }
 
                     //draw and remove previous polyline
