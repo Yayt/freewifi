@@ -71,6 +71,7 @@ public class MapsActivity extends FragmentActivity {
                 //TODO Bounce marker/make icon bigger
                 //TODO remove bubble text with title
                 currentMarker = marker;
+                marker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
                 routeSearch(marker);
                 //TODO Check for internet
                 return false;
@@ -106,17 +107,26 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        //TODO Check if imperial or metric units
         TextView distanceText = (TextView) findViewById(R.id.wifidistance);
         double distance = SphericalUtil.computeLength(path);
         if (distance >= 1000) {
+            if (!useMetric) {
+                distance = distance * 0.62137;
+            }
             distance = distance / 100;
             distance = Math.round(distance * 100) / 100;
             distance = distance / 10;
-            distanceText.setText(distance + " km");
+            if (useMetric) {
+                distanceText.setText(distance + " km");
+            } else {
+                distanceText.setText(distance + " miles");
+            }
         } else {
-            distance = Math.round(distance);
-            distanceText.setText(distance + " m");
+            if (useMetric) {
+                distanceText.setText(distance + " m");
+            } else {
+                distanceText.setText(Math.round(distance * 3.28084) + " feet");
+            }
         }
 
     }
