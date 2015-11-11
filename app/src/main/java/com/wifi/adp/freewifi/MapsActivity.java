@@ -81,6 +81,12 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latlong) {
+                if (firstClick) {
+                    currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+                }
+                if (line != null) {
+                    line.remove();
+                }
                 hideInfoBar();
             }
         });
@@ -110,26 +116,32 @@ public class MapsActivity extends FragmentActivity {
 
         TextView distanceText = (TextView) findViewById(R.id.wifidistance);
         double distance = SphericalUtil.computeLength(path);
-        if (distance >= 1000) {
-            if (!useMetric) {
-                distance = distance * 0.62137;
-            }
-            distance = distance / 100;
-            distance = Math.round(distance * 100) / 100;
-            distance = distance / 10;
-            if (useMetric) {
+
+        if (useMetric) {
+            if (distance >= 1000) {
+                distance = distance / 100;
+                distance = Math.round(distance * 100) / 100;
+                distance = distance / 10;
                 distanceText.setText(distance + " km");
             } else {
-                distanceText.setText(distance + " miles");
+                distanceText.setText(distance + " m");
             }
         } else {
-            if (useMetric) {
-                distanceText.setText(distance + " m");
+            //meters to feet
+            distance = distance * 3.28084;
+
+            //more than 1000 feet? use miles
+            if (distance >= 1000) {
+                distance = distance / 528;
+                Log.i("distance", Double.toString(distance));
+                distance = Math.round(distance * 100) / 100;
+                distance = distance / 10;
+                Log.i("distance", Double.toString(distance));
+                distanceText.setText(distance + " miles");
             } else {
-                distanceText.setText(Math.round(distance * 3.28084) + " feet");
+                distanceText.setText(distance + " feet");
             }
         }
-
     }
 
     @Override
