@@ -1,6 +1,7 @@
 package com.wifi.adp.freewifi;
 
-import android.app.ListActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -8,10 +9,8 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +20,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
+import com.google.maps.android.MarkerManager;
 import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -33,7 +32,6 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,6 +55,7 @@ public class MapsActivity extends FragmentActivity {
     public static String posinfo = "";
     public static String info_A = "";
     public static String info_B = "";
+    public boolean firstClick = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +69,12 @@ public class MapsActivity extends FragmentActivity {
             public boolean onMarkerClick(Marker marker) {
                 //TODO Bounce marker/make icon bigger
                 //TODO remove bubble text with title
+                if (firstClick) {
+                    currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+                }
+                firstClick = true;
                 currentMarker = marker;
-                marker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+                marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
                 routeSearch(marker);
                 //TODO Check for internet
                 return false;
@@ -165,7 +168,7 @@ public class MapsActivity extends FragmentActivity {
                 JSONObject ja = jo.getJSONObject(i);
 //                Log.i("LocationName", ja.getString("name_en"));
                 //TODO Add to item to some list array here?
-                mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).infoWindowAnchor(99999999, 999999).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -301,6 +304,22 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openPrivacyPolicy(View view) {
+//        AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create(); //Read Update
+//        alertDialog.setTitle("Hi");
+//        alertDialog.setMessage("I hope it works");
+//        alertDialog.setButton("Continue..", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                // here you can add functions
+//            }
+//        });
+//        alertDialog.show();
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogue = inflater.inflate(R.layout.alertlayout, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("TESTINGTITLE");
+        builder.setView(dialogue);
+        builder.show();
+
     }
 
     public void openAboutUs(View view) {
