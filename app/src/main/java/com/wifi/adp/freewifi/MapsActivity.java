@@ -67,8 +67,6 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                //TODO Bounce marker/make icon bigger
-                //TODO remove bubble text with title
                 if (firstClick) {
                     currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
                 }
