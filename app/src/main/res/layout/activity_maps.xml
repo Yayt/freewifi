@@ -86,19 +86,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_alignParentBottom="true"
-                android:onClick="openMoreInfo"
                 android:background="@drawable/infobargradient"
                 android:foregroundGravity="bottom"
                 android:gravity="center_vertical"
-                android:minHeight="215px">
+                android:minHeight="215px"
+                android:onClick="openMoreInfo">
 
                 <ImageView
                     android:id="@+id/wifilogoicon"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:gravity="center_vertical"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
                     android:paddingLeft="40px"
                     android:src="@drawable/open_wifi_icon" />
 
@@ -109,9 +109,9 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
                     android:layout_toLeftOf="@+id/startNavigating"
                     android:layout_toRightOf="@+id/wifilogoicon"
+                    android:gravity="center_vertical"
                     android:paddingBottom="20px"
                     android:paddingStart="120px"
                     android:paddingTop="20px"
@@ -136,7 +136,7 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:foregroundGravity="center_horizontal"
-                        android:src="@drawable/walkingguy" />
+                        android:src="@drawable/navigation_icon" />
 
                     <TextView
                         android:id="@+id/wifidistance"
@@ -353,6 +353,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="sans-serif"
+                    android:onClick="openAboutUs"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
                     android:paddingTop="50px"
@@ -365,6 +366,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:fontFamily="sans-serif"
+                    android:onClick="openPrivacyPolicy"
                     android:paddingBottom="50px"
                     android:paddingLeft="100px"
                     android:paddingTop="50px"

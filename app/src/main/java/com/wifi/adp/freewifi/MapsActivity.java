@@ -72,6 +72,7 @@ public class MapsActivity extends FragmentActivity {
                 //TODO remove bubble text with title
                 currentMarker = marker;
                 routeSearch(marker);
+                //TODO Check for internet
                 return false;
             }
         });
@@ -280,10 +281,19 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void startNavigation(View view) {
-        //TODO Start navigation
+        //Starts navigation in walking mode
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + currentMarker.getPosition().latitude + "," + currentMarker.getPosition().longitude + "&mode=w");
+        Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        startActivity(intent);
     }
 
     public void openMoreInfo(View view) {
+    }
+
+    public void openPrivacyPolicy(View view) {
+    }
+
+    public void openAboutUs(View view) {
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
