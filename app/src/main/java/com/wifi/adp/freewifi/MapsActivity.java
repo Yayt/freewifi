@@ -133,10 +133,10 @@ public class MapsActivity extends FragmentActivity {
             //more than 1000 feet? use miles
             if (distance >= 1000) {
                 distance = distance / 528;
-                Log.i("distance", Double.toString(distance));
+//                Log.i("distance", Double.toString(distance));
                 distance = Math.round(distance * 100) / 100;
                 distance = distance / 10;
-                Log.i("distance", Double.toString(distance));
+//                Log.i("distance", Double.toString(distance));
                 distanceText.setText(distance + " miles");
             } else {
                 distanceText.setText(distance + " feet");
