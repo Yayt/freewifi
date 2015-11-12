@@ -25,6 +25,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.plus.People;
 import com.google.maps.android.MarkerManager;
 import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -45,6 +46,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -470,7 +472,6 @@ public class MapsActivity extends FragmentActivity {
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.listitem, android.R.id.text1, values);
-
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         // ListView Item Click Listener

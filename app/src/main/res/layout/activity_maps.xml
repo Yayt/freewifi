@@ -127,10 +127,10 @@
                     android:layout_weight="1"
                     android:onClick="startNavigation"
                     android:orientation="vertical"
-                    android:paddingBottom="20px"
+                    android:paddingBottom="25px"
                     android:paddingLeft="20px"
                     android:paddingRight="50px"
-                    android:paddingTop="50px">
+                    android:paddingTop="25px">
 
                     <ImageView
                         android:layout_width="30dp"
@@ -155,7 +155,7 @@
             android:id="@+id/wifilistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F7E3E6"
+            android:background="#F9F3E6"
             android:orientation="vertical">
 
             <LinearLayout
