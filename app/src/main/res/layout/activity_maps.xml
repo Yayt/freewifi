@@ -90,8 +90,8 @@
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/infobargradient"
                 android:gravity="center_vertical"
-                android:minHeight="215px"
                 android:onClick="openMoreInfo">
+
 
                 <ImageView
                     android:id="@+id/wifilogoicon"
@@ -109,9 +109,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
                     android:layout_toLeftOf="@+id/startNavigating"
                     android:layout_toRightOf="@+id/wifilogoicon"
-                    android:layout_gravity="center_vertical"
                     android:paddingBottom="20px"
                     android:paddingStart="140px"
                     android:paddingTop="20px"
@@ -129,7 +129,8 @@
                     android:orientation="vertical"
                     android:paddingBottom="20px"
                     android:paddingLeft="20px"
-                    android:paddingRight="50px">
+                    android:paddingRight="50px"
+                    android:paddingTop="50px">
 
                     <ImageView
                         android:layout_width="30dp"
