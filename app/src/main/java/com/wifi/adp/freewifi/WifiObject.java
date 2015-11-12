@@ -8,7 +8,7 @@ public class WifiObject {
     private double latitude;
     private double distance;
 
-    public WifiObject(int id, String name_en, double longitude, double latitude, double distance) {
+    public WifiObject(int id, String name_en, double latitude, double longitude, double distance) {
         this.name_en = name_en;
         this.id = id;
         this.longitude = longitude;

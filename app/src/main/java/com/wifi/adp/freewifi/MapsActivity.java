@@ -60,6 +60,7 @@ public class MapsActivity extends FragmentActivity {
     public Marker currentMarker;
     public ListView listView;
     public double distance;
+    public ArrayList<WifiObject> wifiObjects = new ArrayList<WifiObject>();
     public boolean openedInfoBar = false;
     public boolean useMetric = true;
     public static String posinfo = "";
@@ -163,6 +164,7 @@ public class MapsActivity extends FragmentActivity {
                 JSONObject ja = jo.getJSONObject(i);
 //                Log.i("LocationName", ja.getString("name_en"));
                 //TODO Add to item to some list array here?
+                wifiObjects.add(new WifiObject(i, ja.getString("name_en"), ja.getDouble("latitude"), ja.getDouble("longitude"), 0));
                 mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).infoWindowAnchor(99999999, 999999).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
             }
         } catch (IOException ex) {
@@ -449,29 +451,12 @@ public class MapsActivity extends FragmentActivity {
 
     public void showWifiList() {
         listView = (ListView) findViewById(R.id.list);
-        String[] values = new String[]{"Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+        String[] names = new String[wifiObjects.size()];
+        for (int i = 0; i < wifiObjects.size(); i++) {
+            names[i] = wifiObjects.get(i).getName_en();
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.listitem, android.R.id.text1, values);
+                R.layout.listitem, android.R.id.text1, names);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         // ListView Item Click Listener
