@@ -193,29 +193,30 @@ public class MapsActivity extends FragmentActivity {
     private void writeDistance(double distanceToDisplay) {
         TextView distanceText = (TextView) findViewById(R.id.wifidistance);
         distance = distanceToDisplay;
+        double distanceMetric = distance;
         if (useMetric) {
             if (distance >= 1000) {
-                distance = distance / 100;
-                distance = Math.round(distance * 100) / 100;
-                distance = distance / 10;
-                distanceText.setText(distance + " km");
+                distanceMetric = distanceMetric / 100;
+                distanceMetric = Math.round(distanceMetric * 100) / 100;
+                distanceMetric = distanceMetric / 10;
+                distanceText.setText(distanceMetric + " km");
             } else {
-                distanceText.setText(distance + " m");
+                distanceText.setText(distanceMetric + " m");
             }
         } else {
             //meters to feet
-            distance = distance * 3.28084;
+            double distanceImperial = distance * 3.28084;
 
             //more than 1000 feet? use miles
-            if (distance >= 1000) {
-                distance = distance / 528;
+            if (distanceImperial >= 1000) {
+                distanceImperial = distanceImperial / 528;
 //                Log.i("distance", Double.toString(distance));
-                distance = Math.round(distance * 100) / 100;
-                distance = distance / 10;
+                distanceImperial = Math.round(distanceImperial * 100) / 100;
+                distanceImperial = distanceImperial / 10;
 //                Log.i("distance", Double.toString(distance));
-                distanceText.setText(distance + " miles");
+                distanceText.setText(distanceImperial + " miles");
             } else {
-                distanceText.setText(distance + " feet");
+                distanceText.setText(distanceImperial + " feet");
             }
         }
     }
