@@ -442,8 +442,6 @@ public class MapsActivity extends FragmentActivity {
                     Toast.makeText(MapsActivity.this, "ルート情報を取得できませんでした", Toast.LENGTH_LONG).show();
                 }
             }
-
-
         }
     }
 
