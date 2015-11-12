@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import android.widget.ViewAnimator;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -49,7 +51,7 @@ public class MapsActivity extends FragmentActivity {
     private static Location mMyLocation = null;
     private static boolean mMyLocationCentering = false;
     private Polyline line = null;
-    public ViewFlipper vf;
+    public ViewAnimator vf;
     public Marker currentMarker;
     public double distance;
     public boolean openedInfoBar = false;
@@ -92,7 +94,7 @@ public class MapsActivity extends FragmentActivity {
                 hideInfoBar();
             }
         });
-        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        vf = (ViewAnimator) findViewById(R.id.viewFlipper);
     }
 
     private void hideInfoBar() {
@@ -271,6 +273,10 @@ public class MapsActivity extends FragmentActivity {
         if (vf.getDisplayedChild() != 0) {
             vf.setDisplayedChild(0);
         }
+
+        //TODO Add animation when switching views
+//        vf.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+//        vf.setInAnimation(AnimationUtils.loadAnimation(this,android.R.anim.slide_out_right));
     }
 
     public void switchToSettings(View view) {
