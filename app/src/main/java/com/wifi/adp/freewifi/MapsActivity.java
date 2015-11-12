@@ -446,6 +446,7 @@ public class MapsActivity extends FragmentActivity {
         for (int i = 0; i < wifiObjects.size(); i++) {
             names[i] = wifiObjects.get(i).getName_en();
         }
+        //Old standard ArrayAdapter
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, R.id.nameText, names);
 
         //Custom ArrayAdapter which is awesome

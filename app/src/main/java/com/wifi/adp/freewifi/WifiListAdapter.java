@@ -34,7 +34,7 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
             TextView tv = (TextView) targetView.findViewById(R.id.nameText);
             tv.setText(thisWifiObject.getName_en());
             tv = (TextView) targetView.findViewById(R.id.distanceText);
-            tv.setText(Double.toString(thisWifiObject.getDistance()));
+            tv.setText(Integer.toString((int)thisWifiObject.getDistance())+"m");
         }
         return targetView;
     }
