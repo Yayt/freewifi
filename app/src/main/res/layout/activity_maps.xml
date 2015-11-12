@@ -155,7 +155,7 @@
             android:id="@+id/wifilistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F5F2E5"
+            android:background="#F7E3E6"
             android:orientation="vertical">
 
             <LinearLayout
@@ -181,16 +181,11 @@
                     android:src="@drawable/sorting_icon" />
             </LinearLayout>
 
-            <ScrollView
+            <ListView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent">
-
-                <ListView
-                    android:id="@+id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"></ListView>
-            </ScrollView>
-
+                android:layout_height="fill_parent"
+                android:overScrollMode="never"></ListView>
         </LinearLayout>
 
         <ScrollView
