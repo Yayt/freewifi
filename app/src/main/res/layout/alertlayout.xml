@@ -2,6 +2,84 @@
     android:id="@+id/dialog_layout_root"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="#3d3c3e"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:textColor="#000000" />
+    android:textColor="#000000"
+
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:textColor="#ffffff"
+        android:singleLine="false"
+        android:textSize="42px"
+        android:padding="20px" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#4e4d4e"
+        android:orientation="vertical">
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:padding="20px">
+
+                <TextView
+                    android:id="@+id/TEXT_STATUS_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="Full policy "
+                    android:textColor="#ffffff"
+                    android:textSize="50px"
+                    android:fontFamily="SourceSansPro"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data Controller and Owner"
+                    android:textColor="#ffffff"
+                    android:textSize="30px"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2) I'm hungry"
+                    android:id="@+id/textView2"
+
+                    android:paddingTop="10px"
+
+                    android:textColor="#ffffff"
+                    android:textSize="36px"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
