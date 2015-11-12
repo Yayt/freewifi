@@ -29,7 +29,7 @@
 
         <ScrollView
             android:id="@+id/scrollView"
-            android:paddingTop="20px"
+            android:padding="30px"
             android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:layout_gravity="center_horizontal">
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:fontFamily="SourceSansPro"
-                    android:text="Data Controller and Owner"
+                    android:text="@string/datacontroller"
                     android:textColor="#ffffff"
                     android:textSize="40px"
                     android:textStyle="bold|italic" />
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
-                    android:text="Types of Data collected"
+                    android:text="@string/typesofdata"
                     android:textColor="#ffffff"
                     android:layout_below="@id/TEXT_STATUS_ID"
                     android:textSize="30px"
@@ -67,10 +67,97 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10px"
-                    android:text="Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Geographic position, Cookies and Usage Data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party&apos;s consent to provide the Data to the Owner. "
+                    android:text="@string/typesofdatatext"
                     android:textColor="#ffffff"
                     android:layout_below="@id/textView"
                     android:textSize="36px" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45px"
+                        android:paddingTop="10px"
+                        android:text="@string/methods"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView2"
+                        android:textSize="30px"
+                        android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10px"
+                        android:text="@string/methodstext"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView3"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45px"
+                        android:paddingTop="10px"
+                        android:text="@string/place"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView4"
+                        android:textSize="30px"
+                        android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10px"
+                        android:text="@string/placetext"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView5"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45px"
+                        android:paddingTop="10px"
+                        android:text="@string/retention"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView6"
+                        android:textSize="30px"
+                        android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10px"
+                        android:text="@string/retentiontext"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView7"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45px"
+                        android:paddingTop="10px"
+                        android:text="@string/collecteddata"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView8"
+                        android:textSize="30px"
+                        android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10px"
+                        android:text="@string/collecteddatatext"
+                        android:textColor="#ffffff"
+                        android:layout_below="@id/textView9"
+                        android:textSize="36px" />
+
+
+
 
                 </RelativeLayout>
         </ScrollView>

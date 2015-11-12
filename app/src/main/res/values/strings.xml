@@ -6,8 +6,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_settings">MAIN SETTINGS</string>
     <string name="log_in_with_google">Log In with Google</string>
+<<<<<<< Updated upstream
     <string name="UnitOfLength">Unit of length</string>
     <string name="metric">Metric</string>
     <string name="disableAds">Disable ads</string>
     <string name="getPremium">Get premium</string>
+=======
+    <string name="datacontroller">Data Controller and Owner</string>
+    <string name="typesofdata">Types of Data collected</string>
+    <string name="typesofdatatext">Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Geographic position, Cookies and Usage Data. \n Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party\'s consent to provide the Data to the Owner.</string>
+    <string name="methods">Methods of processing</string>
+    <string name="methodstext">The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time.</string>
+    <string name="place">Place</string>
+    <string name="placetext">The Data is processed at the Data Controller\'s operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller.</string>
+    <string name="retention">Retention time</string>
+    <string name="retentiontext">The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data.</string>
+    <string name="collecteddatatext"><![CDATA[The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: • foo<br/>Location-based interaction • bar<br/> Advertising The Personal Data used for each purpose is outlined in the specific sections of this document.]]></string>
+    <string name="collecteddata">The use of the collected Data</string>
+
+>>>>>>> Stashed changes
 </resources>
