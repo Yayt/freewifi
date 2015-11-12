@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import android.widget.ViewAnimator;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -49,8 +51,10 @@ public class MapsActivity extends FragmentActivity {
     private static Location mMyLocation = null;
     private static boolean mMyLocationCentering = false;
     private Polyline line = null;
-    public ViewFlipper vf;
+    public ViewAnimator vf;
     public Marker currentMarker;
+    public double distance;
+    public boolean openedInfoBar = false;
     public boolean useMetric = true;
     public static String posinfo = "";
     public static String info_A = "";
@@ -67,8 +71,6 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                //TODO Bounce marker/make icon bigger
-                //TODO remove bubble text with title
                 if (firstClick) {
                     currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
                 }
@@ -83,16 +85,22 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latlong) {
+                if (firstClick) {
+                    currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+                }
+                if (line != null) {
+                    line.remove();
+                }
                 hideInfoBar();
             }
         });
-        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        vf = (ViewAnimator) findViewById(R.id.viewFlipper);
     }
 
     private void hideInfoBar() {
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
-
+        openedInfoBar = false;
         //TODO use SLOW animation
         params.height = 0;
     }
@@ -102,7 +110,7 @@ public class MapsActivity extends FragmentActivity {
         //TODO use SLOW animation
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
-
+        openedInfoBar = true;
         //Use wrap_content
         params.height = -2;
 //        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
@@ -110,28 +118,9 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        TextView distanceText = (TextView) findViewById(R.id.wifidistance);
         double distance = SphericalUtil.computeLength(path);
-        if (distance >= 1000) {
-            if (!useMetric) {
-                distance = distance * 0.62137;
-            }
-            distance = distance / 100;
-            distance = Math.round(distance * 100) / 100;
-            distance = distance / 10;
-            if (useMetric) {
-                distanceText.setText(distance + " km");
-            } else {
-                distanceText.setText(distance + " miles");
-            }
-        } else {
-            if (useMetric) {
-                distanceText.setText(distance + " m");
-            } else {
-                distanceText.setText(Math.round(distance * 3.28084) + " feet");
-            }
-        }
 
+        writeDistance(distance);
     }
 
     @Override
@@ -203,6 +192,37 @@ public class MapsActivity extends FragmentActivity {
         }
     }
 
+    private void writeDistance(double distanceToDisplay) {
+        TextView distanceText = (TextView) findViewById(R.id.wifidistance);
+        distance = distanceToDisplay;
+        double distanceMetric = distance;
+        if (useMetric) {
+            if (distance >= 1000) {
+                distanceMetric = distanceMetric / 100;
+                distanceMetric = Math.round(distanceMetric * 100) / 100;
+                distanceMetric = distanceMetric / 10;
+                distanceText.setText(distanceMetric + " km");
+            } else {
+                distanceText.setText(distanceMetric + " m");
+            }
+        } else {
+            //meters to feet
+            double distanceImperial = distance * 3.28084;
+
+            //more than 1000 feet? use miles
+            if (distanceImperial >= 1000) {
+                distanceImperial = distanceImperial / 528;
+//                Log.i("distance", Double.toString(distance));
+                distanceImperial = Math.round(distanceImperial * 100) / 100;
+                distanceImperial = distanceImperial / 10;
+//                Log.i("distance", Double.toString(distance));
+                distanceText.setText(distanceImperial + " miles");
+            } else {
+                distanceText.setText(distanceImperial + " feet");
+            }
+        }
+    }
+
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
@@ -253,6 +273,10 @@ public class MapsActivity extends FragmentActivity {
         if (vf.getDisplayedChild() != 0) {
             vf.setDisplayedChild(0);
         }
+
+        //TODO Add animation when switching views
+//        vf.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+//        vf.setInAnimation(AnimationUtils.loadAnimation(this,android.R.anim.slide_out_right));
     }
 
     public void switchToSettings(View view) {
@@ -281,7 +305,9 @@ public class MapsActivity extends FragmentActivity {
             unitText.setText("Metric");
             useMetric = true;
         }
-
+        if (openedInfoBar) {
+            writeDistance(distance);
+        }
     }
 
     public void openPlayStore(View view) {
