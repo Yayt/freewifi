@@ -162,10 +162,9 @@ public class MapsActivity extends FragmentActivity {
             JSONArray jo = new JSONArray(str);
             for (int i = 0; i < jo.length(); i++) {
                 JSONObject ja = jo.getJSONObject(i);
-//                Log.i("LocationName", ja.getString("name_en"));
-                //TODO Add to item to some list array here?
-                wifiObjects.add(new WifiObject(i, ja.getString("name_en"), ja.getDouble("latitude"), ja.getDouble("longitude"), 0));
-                mMap.addMarker(new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).infoWindowAnchor(99999999, 999999).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png")));
+                MarkerOptions thisMarkerOptions = new MarkerOptions().position(new LatLng(ja.getDouble("latitude"), ja.getDouble("longitude"))).title(ja.getString("name_en")).infoWindowAnchor(99999999, 999999).icon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+                Marker thisMarker = mMap.addMarker(thisMarkerOptions);
+                wifiObjects.add(new WifiObject(i, ja.getString("name_en"), ja.getDouble("latitude"), ja.getDouble("longitude"), 0, thisMarker));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -222,10 +221,8 @@ public class MapsActivity extends FragmentActivity {
             //more than 1000 feet? use miles
             if (distanceImperial >= 1000) {
                 distanceImperial = distanceImperial / 528;
-//                Log.i("distance", Double.toString(distance));
                 distanceImperial = Math.round(distanceImperial * 100) / 100;
                 distanceImperial = distanceImperial / 10;
-//                Log.i("distance", Double.toString(distance));
                 distanceText.setText(distanceImperial + " miles");
             } else {
                 distanceText.setText(distanceImperial + " feet");
@@ -452,6 +449,8 @@ public class MapsActivity extends FragmentActivity {
     public void showWifiList() {
         listView = (ListView) findViewById(R.id.list);
         String[] names = new String[wifiObjects.size()];
+        int[] distances = new int[wifiObjects.size()];
+
         for (int i = 0; i < wifiObjects.size(); i++) {
             names[i] = wifiObjects.get(i).getName_en();
         }
@@ -464,9 +463,21 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
+                clickMarkerManually(wifiObjects.get(position).getMarker());
             }
-
         });
+    }
+
+    public boolean clickMarkerManually(Marker marker) {
+        vf.setDisplayedChild(0);
+        if (firstClick) {
+            currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
+        }
+        firstClick = true;
+        currentMarker = marker;
+        marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
+        routeSearch(marker);
+        //TODO Check for internet
+        return false;
     }
 }

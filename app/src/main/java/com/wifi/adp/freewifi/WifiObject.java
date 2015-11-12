@@ -1,18 +1,22 @@
 package com.wifi.adp.freewifi;
 
+import com.google.android.gms.maps.model.Marker;
+
 public class WifiObject {
 
     private int id;
     private String name_en;
     private double longitude;
     private double latitude;
+    private Marker marker;
     private double distance;
 
-    public WifiObject(int id, String name_en, double latitude, double longitude, double distance) {
+    public WifiObject(int id, String name_en, double latitude, double longitude, double distance, Marker marker) {
         this.name_en = name_en;
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.marker = marker;
         this.distance = distance;
     }
 
@@ -54,5 +58,13 @@ public class WifiObject {
 
     public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 }
