@@ -342,7 +342,6 @@ public class MapsActivity extends FragmentActivity {
         LayoutInflater inflater = getLayoutInflater();
         View dialogue = inflater.inflate(R.layout.alertlayout, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Privacy Policy");
         builder.setView(dialogue);
         builder.show();
 

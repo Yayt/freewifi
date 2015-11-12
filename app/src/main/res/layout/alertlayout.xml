@@ -4,23 +4,22 @@
     android:layout_height="wrap_content"
     android:background="#3d3c3e"
     android:orientation="vertical"
-    android:textColor="#000000"
-
-    >
+    android:textColor="#000000">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="20px"
+        android:singleLine="false"
         android:text="Privacy Policy"
         android:textColor="#ffffff"
-        android:singleLine="false"
-        android:textSize="42px"
-        android:padding="20px" />
+        android:textSize="42px" />
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="2dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -46,40 +45,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
+                    android:fontFamily="SourceSansPro"
                     android:text="Full policy "
                     android:textColor="#ffffff"
                     android:textSize="50px"
-                    android:fontFamily="SourceSansPro"
                     android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
                     android:text="Data Controller and Owner"
                     android:textColor="#ffffff"
                     android:textSize="30px"
-                    android:paddingLeft="45px"
-                    android:paddingTop="10px"
                     android:textStyle="italic" />
+
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2) I'm hungry"
-                    android:id="@+id/textView2"
-
                     android:paddingTop="10px"
-
+                    android:text="2) I'm hungry"
                     android:textColor="#ffffff"
-                    android:textSize="36px"/>
+                    android:textSize="36px" />
 
             </LinearLayout>
-
         </ScrollView>
-
     </LinearLayout>
-
-
-
-
 </LinearLayout>
