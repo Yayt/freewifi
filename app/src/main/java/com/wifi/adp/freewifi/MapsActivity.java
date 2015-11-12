@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +55,7 @@ public class MapsActivity extends FragmentActivity {
     private Polyline line = null;
     public ViewAnimator vf;
     public Marker currentMarker;
+    public ListView listView ;
     public double distance;
     public boolean openedInfoBar = false;
     public boolean useMetric = true;
@@ -92,6 +95,9 @@ public class MapsActivity extends FragmentActivity {
                     line.remove();
                 }
                 hideInfoBar();
+
+                //WIFILISTTEST
+                showWifiList();
             }
         });
         vf = (ViewAnimator) findViewById(R.id.viewFlipper);
@@ -330,21 +336,11 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openPrivacyPolicy(View view) {
-//        AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create(); //Read Update
-//        alertDialog.setTitle("Hi");
-//        alertDialog.setMessage("I hope it works");
-//        alertDialog.setButton("Continue..", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                // here you can add functions
-//            }
-//        });
-//        alertDialog.show();
         LayoutInflater inflater = getLayoutInflater();
         View dialogue = inflater.inflate(R.layout.alertlayout, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogue);
         builder.show();
-
     }
 
     public void openAboutUs(View view) {
@@ -449,6 +445,23 @@ public class MapsActivity extends FragmentActivity {
 
 
         }
+    }
+
+    public void showWifiList(){
+        listView = (ListView) findViewById(R.id.list);
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+        listView.setAdapter(adapter);
     }
 
 
