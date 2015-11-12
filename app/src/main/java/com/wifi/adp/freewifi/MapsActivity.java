@@ -328,6 +328,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openMoreInfo(View view) {
+        //TODO Add from the infobar
     }
 
     public void openPrivacyPolicy(View view) {
@@ -339,6 +340,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openAboutUs(View view) {
+        //TODO Copy from openPrivacyPolicy
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
@@ -346,10 +348,7 @@ public class MapsActivity extends FragmentActivity {
 
         @Override
         protected String doInBackground(String... url) {
-
-
             String data = "";
-
             try {
                 // Fetching the data from web service
                 data = downloadUrl(url[0]);
@@ -358,7 +357,6 @@ public class MapsActivity extends FragmentActivity {
             }
             return data;
         }
-
 
         // doInBackground()
         @Override
@@ -443,13 +441,15 @@ public class MapsActivity extends FragmentActivity {
     public void showWifiList() {
         listView = (ListView) findViewById(R.id.list);
         String[] names = new String[wifiObjects.size()];
-        int[] distances = new int[wifiObjects.size()];
+        double[] distances = new double[wifiObjects.size()];
 
         for (int i = 0; i < wifiObjects.size(); i++) {
             names[i] = wifiObjects.get(i).getName_en();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.listitem, android.R.id.text1, names);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, R.id.nameText, names);
+
+        //Custom ArrayAdapter which is awesome
+        WifiListAdapter adapter = new WifiListAdapter(this, R.layout.listitem, wifiObjects);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         // ListView Item Click Listener
@@ -460,6 +460,7 @@ public class MapsActivity extends FragmentActivity {
                 clickMarkerFromList(wifiObjects.get(position).getMarker());
             }
         });
+
     }
 
     public boolean clickMarkerFromList(Marker marker) {
