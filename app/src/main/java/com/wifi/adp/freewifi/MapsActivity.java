@@ -1,7 +1,6 @@
 package com.wifi.adp.freewifi;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -11,22 +10,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 import android.widget.ViewAnimator;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.plus.People;
-import com.google.maps.android.MarkerManager;
 import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -46,7 +41,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -463,12 +457,12 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                clickMarkerManually(wifiObjects.get(position).getMarker());
+                clickMarkerFromList(wifiObjects.get(position).getMarker());
             }
         });
     }
 
-    public boolean clickMarkerManually(Marker marker) {
+    public boolean clickMarkerFromList(Marker marker) {
         vf.setDisplayedChild(0);
         if (firstClick) {
             currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
@@ -478,6 +472,8 @@ public class MapsActivity extends FragmentActivity {
         marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
         routeSearch(marker);
         //TODO Check for internet
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 13);
+        mMap.animateCamera(cameraUpdate);
         return false;
     }
 }

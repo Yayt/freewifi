@@ -185,6 +185,8 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:divider="#80000000"
+                android:dividerHeight="1px"
                 android:overScrollMode="never"></ListView>
         </LinearLayout>
 
