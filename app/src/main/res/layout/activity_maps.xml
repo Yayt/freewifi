@@ -61,6 +61,7 @@
 
     </LinearLayout>
 
+    <!--TODO Make into ViewAnimator-->
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"

@@ -51,6 +51,8 @@ public class MapsActivity extends FragmentActivity {
     private Polyline line = null;
     public ViewFlipper vf;
     public Marker currentMarker;
+    public double distance;
+    public boolean openedInfoBar = false;
     public boolean useMetric = true;
     public static String posinfo = "";
     public static String info_A = "";
@@ -96,7 +98,7 @@ public class MapsActivity extends FragmentActivity {
     private void hideInfoBar() {
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
-
+        openedInfoBar = false;
         //TODO use SLOW animation
         params.height = 0;
     }
@@ -106,7 +108,7 @@ public class MapsActivity extends FragmentActivity {
         //TODO use SLOW animation
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
-
+        openedInfoBar = true;
         //Use wrap_content
         params.height = -2;
 //        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
@@ -114,34 +116,9 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        TextView distanceText = (TextView) findViewById(R.id.wifidistance);
         double distance = SphericalUtil.computeLength(path);
 
-        if (useMetric) {
-            if (distance >= 1000) {
-                distance = distance / 100;
-                distance = Math.round(distance * 100) / 100;
-                distance = distance / 10;
-                distanceText.setText(distance + " km");
-            } else {
-                distanceText.setText(distance + " m");
-            }
-        } else {
-            //meters to feet
-            distance = distance * 3.28084;
-
-            //more than 1000 feet? use miles
-            if (distance >= 1000) {
-                distance = distance / 528;
-//                Log.i("distance", Double.toString(distance));
-                distance = Math.round(distance * 100) / 100;
-                distance = distance / 10;
-//                Log.i("distance", Double.toString(distance));
-                distanceText.setText(distance + " miles");
-            } else {
-                distanceText.setText(distance + " feet");
-            }
-        }
+        writeDistance(distance);
     }
 
     @Override
@@ -210,6 +187,36 @@ public class MapsActivity extends FragmentActivity {
             String url = getDirectionsUrl(origin, dest);
             DownloadTask downloadTask = new DownloadTask();
             downloadTask.execute(url);
+        }
+    }
+
+    private void writeDistance(double distanceToDisplay) {
+        TextView distanceText = (TextView) findViewById(R.id.wifidistance);
+        distance = distanceToDisplay;
+        if (useMetric) {
+            if (distance >= 1000) {
+                distance = distance / 100;
+                distance = Math.round(distance * 100) / 100;
+                distance = distance / 10;
+                distanceText.setText(distance + " km");
+            } else {
+                distanceText.setText(distance + " m");
+            }
+        } else {
+            //meters to feet
+            distance = distance * 3.28084;
+
+            //more than 1000 feet? use miles
+            if (distance >= 1000) {
+                distance = distance / 528;
+//                Log.i("distance", Double.toString(distance));
+                distance = Math.round(distance * 100) / 100;
+                distance = distance / 10;
+//                Log.i("distance", Double.toString(distance));
+                distanceText.setText(distance + " miles");
+            } else {
+                distanceText.setText(distance + " feet");
+            }
         }
     }
 
@@ -291,7 +298,9 @@ public class MapsActivity extends FragmentActivity {
             unitText.setText("Metric");
             useMetric = true;
         }
-
+        if (openedInfoBar) {
+            writeDistance(distance);
+        }
     }
 
     public void openPlayStore(View view) {
