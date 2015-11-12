@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -55,7 +56,7 @@ public class MapsActivity extends FragmentActivity {
     private Polyline line = null;
     public ViewAnimator vf;
     public Marker currentMarker;
-    public ListView listView ;
+    public ListView listView;
     public double distance;
     public boolean openedInfoBar = false;
     public boolean useMetric = true;
@@ -95,9 +96,6 @@ public class MapsActivity extends FragmentActivity {
                     line.remove();
                 }
                 hideInfoBar();
-
-                //WIFILISTTEST
-                showWifiList();
             }
         });
         vf = (ViewAnimator) findViewById(R.id.viewFlipper);
@@ -184,6 +182,8 @@ public class MapsActivity extends FragmentActivity {
                 }
             }
         });
+        //WIFILISTTEST
+        showWifiList();
     }
 
     private void routeSearch(Marker marker) {
@@ -447,9 +447,9 @@ public class MapsActivity extends FragmentActivity {
         }
     }
 
-    public void showWifiList(){
+    public void showWifiList() {
         listView = (ListView) findViewById(R.id.list);
-        String[] values = new String[] { "Android List View",
+        String[] values = new String[]{"Android List View",
                 "Adapter implementation",
                 "Simple List View In Android",
                 "Create List View Android",
@@ -462,7 +462,15 @@ public class MapsActivity extends FragmentActivity {
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+            }
+
+        });
     }
-
-
 }

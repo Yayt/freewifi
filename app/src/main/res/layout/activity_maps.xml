@@ -257,7 +257,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="50px"
-                        android:text="Unit of length"
+                        android:text="@string/UnitOfLength"
                         android:textColor="#FFFFFF" />
 
                     <TextView
@@ -266,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="50px"
-                        android:text="Metric"
+                        android:text="@string/metric"
                         android:textColor="#919191" />
                 </LinearLayout>
 
@@ -285,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="50px"
-                        android:text="Disable ads"
+                        android:text="@string/disableAds"
                         android:textColor="#FFFFFF" />
 
                     <TextView
@@ -293,7 +293,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="50px"
-                        android:text="Get premium"
+                        android:text="@string/getPremium"
                         android:textColor="#919191" />
                 </LinearLayout>
 

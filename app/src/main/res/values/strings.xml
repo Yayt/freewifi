@@ -6,4 +6,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_settings">MAIN SETTINGS</string>
     <string name="log_in_with_google">Log In with Google</string>
+    <string name="UnitOfLength">Unit of length</string>
+    <string name="metric">Metric</string>
+    <string name="disableAds">Disable ads</string>
+    <string name="getPremium">Get premium</string>
 </resources>
