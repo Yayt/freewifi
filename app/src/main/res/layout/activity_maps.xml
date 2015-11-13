@@ -180,35 +180,72 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/sorting_icon" />
 
-                <TextView
-                    android:id="@+id/alphabeticSort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="10px"
-                    android:layout_marginStart="10px"
-                    android:background="@drawable/selectedsort"
-                    android:onClick="sortAlphabetic"
-                    android:paddingEnd="10px"
-                    android:paddingStart="10px"
-                    android:text="A - Z"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/distanceSort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="10px"
-                    android:layout_marginStart="10px"
-                    android:background="@drawable/selectedsort"
-                    android:onClick="sortDistance"
-                    android:paddingEnd="10px"
-                    android:paddingStart="10px"
-                    android:text="DIST"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
+                    <LinearLayout
+                        android:id="@+id/alphabeticSortBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/deselectedsort"
+                        android:onClick="sortAlphabetic"
+                        android:orientation="horizontal"
+                        android:paddingEnd="25px"
+                        android:paddingStart="25px">
+
+                        <TextView
+                            android:id="@+id/alphabeticSort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="10px"
+                            android:layout_marginStart="10px"
+                            android:text="A - Z"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/alphabeticSortImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/arrow_square_sorting" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/distanceSortBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/alphabeticSortBox"
+                        android:layout_weight="1"
+                        android:background="@drawable/deselectedsort"
+                        android:onClick="sortDistance"
+                        android:paddingEnd="25px"
+                        android:paddingStart="25px">
+
+                        <TextView
+                            android:id="@+id/distanceSort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="10px"
+                            android:layout_marginStart="10px"
+                            android:text="DIST"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/distanceSortImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/arrow_square_sorting" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
 
             <ListView

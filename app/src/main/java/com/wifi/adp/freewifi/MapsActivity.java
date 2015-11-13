@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -128,7 +131,7 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        //TODO: Remove computepathlengh and just estimate it again
+        //TODO: Remove computelengh and just estimate it again
         //double distance = SphericalUtil.computeLength(path);
         double distance = 0;
 
@@ -311,6 +314,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openFilters(View view) {
+        Toast.makeText(getBaseContext(), "Filters", Toast.LENGTH_LONG).show();
     }
 
     public void sendFeedback(View view) {
@@ -368,10 +372,14 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void sortAlphabetic(View view) {
+        LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
+        LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
         TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
         TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
-        toggleBackgroundWhite(alphabeticSort);
-        toggleBackgroundBlack(distanceSort);
+        ImageView alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
+        ImageView distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
+        toggleBackgroundWhite(alphabeticSortBox, alphabeticSort, alphabeticSortImage);
+        toggleBackgroundBlack(distanceSortBox, distanceSort, distanceSortImage);
 
         Collections.sort(wifiObjects, new Comparator<WifiObject>() {
             @Override
@@ -382,21 +390,28 @@ public class MapsActivity extends FragmentActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void toggleBackgroundWhite(TextView textView) {
-        textView.setBackgroundResource(R.drawable.selectedsort);
+    public void toggleBackgroundWhite(LinearLayout linearLayout, TextView textView, ImageView imageView) {
+        linearLayout.setBackgroundResource(R.drawable.selectedsort);
         textView.setTextColor(getResources().getColor(android.R.color.black));
+        imageView.setImageResource(R.drawable.arrow_sorting_selected);
     }
 
-    public void toggleBackgroundBlack(TextView textView) {
-        textView.setBackgroundResource(R.drawable.deselectedsort);
+    public void toggleBackgroundBlack(LinearLayout linearLayout, TextView textView, ImageView imageView) {
+        linearLayout.setBackgroundResource(R.drawable.deselectedsort);
         textView.setTextColor(-1);
+        imageView.setImageResource(R.drawable.arrow_square_sorting);
     }
 
     public void sortDistance(View view) {
+        LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
+        LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
         TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
         TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
-        toggleBackgroundWhite(distanceSort);
-        toggleBackgroundBlack(alphabeticSort);
+        ImageView alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
+        ImageView distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
+        toggleBackgroundBlack(alphabeticSortBox, alphabeticSort, alphabeticSortImage);
+        toggleBackgroundWhite(distanceSortBox, distanceSort, distanceSortImage);
+
         Collections.sort(wifiObjects, new Comparator<WifiObject>() {
             @Override
             public int compare(WifiObject p1, WifiObject p2) {
