@@ -2,6 +2,8 @@ package com.wifi.adp.freewifi;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -57,6 +59,7 @@ public class MapsActivity extends FragmentActivity {
     public ArrayList<WifiObject> wifiObjects = new ArrayList<WifiObject>();
     public boolean openedInfoBar = false;
     public boolean useMetric = true;
+    WifiListAdapter adapter;
     public static String posinfo = "";
     public static String info_A = "";
     public static String info_B = "";
@@ -362,6 +365,30 @@ public class MapsActivity extends FragmentActivity {
         //TODO Copy from openPrivacyPolicy
     }
 
+    public void sortAlphabetic(View view) {
+        TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
+        toggleBackgroundButtom(alphabeticSort);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void toggleBackgroundButtom(TextView textView) {
+        ColorDrawable cd = (ColorDrawable) textView.getBackground();
+        int colorCode = cd.getColor();
+        if (colorCode == -1) {
+            textView.setBackgroundColor(-16777216);
+            textView.setTextColor(-1);
+        } else {
+            textView.setBackgroundColor(-1);
+            textView.setTextColor(-16777216);
+        }
+        //Log.i("backgroundcolor", Integer.toString(colorCode));
+    }
+
+    public void sortDistance(View view) {
+        TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
+        toggleBackgroundButtom(distanceSort);
+    }
+
     private class DownloadTask extends AsyncTask<String, Void, String> {
         //get in AsyncTask
 
@@ -469,7 +496,7 @@ public class MapsActivity extends FragmentActivity {
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, R.id.nameText, names);
 
         //Custom ArrayAdapter which is awesome
-        WifiListAdapter adapter = new WifiListAdapter(this, R.layout.listitem, wifiObjects);
+        adapter = new WifiListAdapter(this, R.layout.listitem, wifiObjects);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         // ListView Item Click Listener

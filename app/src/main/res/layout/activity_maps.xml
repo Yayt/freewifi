@@ -179,6 +179,32 @@
                     android:onClick="openFilters"
                     android:scaleType="fitCenter"
                     android:src="@drawable/sorting_icon" />
+
+                <TextView
+                    android:id="@+id/alphabeticSort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10px"
+                    android:layout_marginStart="10px"
+                    android:background="#FFFFFF"
+                    android:onClick="sortAlphabetic"
+                    android:paddingEnd="10px"
+                    android:paddingStart="10px"
+                    android:text="A - Z" />
+
+                <TextView
+                    android:id="@+id/distanceSort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10px"
+                    android:layout_marginStart="10px"
+                    android:background="#FFFFFF"
+                    android:onClick="sortDistance"
+                    android:paddingEnd="10px"
+                    android:paddingStart="10px"
+                    android:text="DIST" />
             </LinearLayout>
 
             <ListView
