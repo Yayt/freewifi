@@ -79,6 +79,7 @@ public class MapsActivity extends FragmentActivity {
                 currentMarker = marker;
                 marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
                 routeSearch(marker);
+                openInfoBar();
                 //TODO Check for internet
                 return false;
             }
@@ -106,7 +107,7 @@ public class MapsActivity extends FragmentActivity {
         params.height = 0;
     }
 
-    private void openInfoBar(List<LatLng> path) {
+    private void openInfoBar() {
         //TODO Add infobar shadow
         //TODO use SLOW animation
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
@@ -119,8 +120,16 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        double distance = SphericalUtil.computeLength(path);
+        //TODO: Remove computepathlengh and just estimate it again
+        //double distance = SphericalUtil.computeLength(path);
+        double distance = 0;
 
+        if (mMyLocation != null) {
+            Location markerLocation = new Location("");
+            markerLocation.setLatitude(currentMarker.getPosition().latitude);
+            markerLocation.setLongitude(currentMarker.getPosition().longitude);
+            distance = mMyLocation.distanceTo(markerLocation);
+        }
         writeDistance(distance);
     }
 
@@ -213,7 +222,7 @@ public class MapsActivity extends FragmentActivity {
                 distanceMetric = distanceMetric / 10;
                 distanceText.setText(distanceMetric + " km");
             } else {
-                distanceText.setText((int)distanceMetric + " m");
+                distanceText.setText((int) distanceMetric + " m");
             }
         } else {
             //meters to feet
@@ -226,7 +235,7 @@ public class MapsActivity extends FragmentActivity {
                 distanceImperial = distanceImperial / 10;
                 distanceText.setText(distanceImperial + " miles");
             } else {
-                distanceText.setText((int)distanceImperial + " feet");
+                distanceText.setText((int) distanceImperial + " feet");
             }
         }
     }
@@ -429,7 +438,7 @@ public class MapsActivity extends FragmentActivity {
                         lineOptions.color(0x550000ff);
 
                         //TODO Check if user has internet, if not, estimate distance
-                        openInfoBar(points);
+                        //openInfoBar(points);
                     }
 
                     //draw and remove previous polyline
@@ -480,6 +489,7 @@ public class MapsActivity extends FragmentActivity {
         currentMarker = marker;
         marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
         routeSearch(marker);
+        openInfoBar();
         //TODO Check for internet
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 13);
         mMap.animateCamera(cameraUpdate);
@@ -491,7 +501,7 @@ public class MapsActivity extends FragmentActivity {
         protected String doInBackground(String... url) {
             //TODO get and set distances for each object
             String data = "";
-            for (int i = 0; i<wifiObjects.size();i++){
+            for (int i = 0; i < wifiObjects.size(); i++) {
                 Location dest = new Location("");
                 dest.setLatitude(wifiObjects.get(i).getLatitude());
                 dest.setLongitude(wifiObjects.get(i).getLongitude());
