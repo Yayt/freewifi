@@ -172,6 +172,7 @@ public class MapsActivity extends FragmentActivity {
             @Override
             public void onMyLocationChange(Location location) {
                 mMyLocation = location;
+                calculateDistances();
                 if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
                     mMyLocationCentering = true;
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
@@ -181,6 +182,12 @@ public class MapsActivity extends FragmentActivity {
         });
         //WIFILISTTEST
         showWifiList();
+    }
+
+    private void calculateDistances() {
+        //TODO calculate distances to each of the wifispots (preferable in background)
+        DistanceTask distanceTask = new DistanceTask();
+        distanceTask.execute();
     }
 
     private void routeSearch(Marker marker) {
@@ -206,7 +213,7 @@ public class MapsActivity extends FragmentActivity {
                 distanceMetric = distanceMetric / 10;
                 distanceText.setText(distanceMetric + " km");
             } else {
-                distanceText.setText(distanceMetric + " m");
+                distanceText.setText((int)distanceMetric + " m");
             }
         } else {
             //meters to feet
@@ -219,7 +226,7 @@ public class MapsActivity extends FragmentActivity {
                 distanceImperial = distanceImperial / 10;
                 distanceText.setText(distanceImperial + " miles");
             } else {
-                distanceText.setText(distanceImperial + " feet");
+                distanceText.setText((int)distanceImperial + " feet");
             }
         }
     }
@@ -477,5 +484,14 @@ public class MapsActivity extends FragmentActivity {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 13);
         mMap.animateCamera(cameraUpdate);
         return false;
+    }
+
+    private class DistanceTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... url) {
+            //TODO get and set distances for each object
+            String data = "";
+            return data;
+        }
     }
 }
