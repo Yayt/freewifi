@@ -191,7 +191,8 @@
                     android:onClick="sortAlphabetic"
                     android:paddingEnd="10px"
                     android:paddingStart="10px"
-                    android:text="A - Z" />
+                    android:text="A - Z"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/distanceSort"
@@ -204,7 +205,8 @@
                     android:onClick="sortDistance"
                     android:paddingEnd="10px"
                     android:paddingStart="10px"
-                    android:text="DIST" />
+                    android:text="DIST"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <ListView

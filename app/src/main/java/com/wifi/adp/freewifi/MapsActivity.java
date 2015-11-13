@@ -43,6 +43,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -367,26 +369,41 @@ public class MapsActivity extends FragmentActivity {
 
     public void sortAlphabetic(View view) {
         TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
-        toggleBackgroundButtom(alphabeticSort);
+        TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
+        toggleBackgroundWhite(alphabeticSort);
+        toggleBackgroundBlack(distanceSort);
+
+        Collections.sort(wifiObjects, new Comparator<WifiObject>() {
+            @Override
+            public int compare(WifiObject p1, WifiObject p2) {
+                return p1.getName_en().compareTo(p2.getName_en());
+            }
+        });
         adapter.notifyDataSetChanged();
     }
 
-    public void toggleBackgroundButtom(TextView textView) {
-        ColorDrawable cd = (ColorDrawable) textView.getBackground();
-        int colorCode = cd.getColor();
-        if (colorCode == -1) {
-            textView.setBackgroundColor(-16777216);
-            textView.setTextColor(-1);
-        } else {
-            textView.setBackgroundColor(-1);
-            textView.setTextColor(-16777216);
-        }
-        //Log.i("backgroundcolor", Integer.toString(colorCode));
+    public void toggleBackgroundWhite(TextView textView) {
+        textView.setBackgroundColor(-1);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+    }
+
+    public void toggleBackgroundBlack(TextView textView) {
+        textView.setBackgroundColor(getResources().getColor(android.R.color.black));
+        textView.setTextColor(-1);
     }
 
     public void sortDistance(View view) {
+        TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
         TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
-        toggleBackgroundButtom(distanceSort);
+        toggleBackgroundWhite(distanceSort);
+        toggleBackgroundBlack(alphabeticSort);
+        Collections.sort(wifiObjects, new Comparator<WifiObject>() {
+            @Override
+            public int compare(WifiObject p1, WifiObject p2) {
+                return (int) p1.getDistance() - (int) p2.getDistance();
+            }
+        });
+        adapter.notifyDataSetChanged();
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
