@@ -1,5 +1,7 @@
 package com.wifi.adp.freewifi;
 
+import android.location.Location;
+
 import com.google.android.gms.maps.model.Marker;
 
 public class WifiObject {
@@ -8,6 +10,7 @@ public class WifiObject {
     private String name_en;
     private double longitude;
     private double latitude;
+    private Location location;
     private Marker marker;
     private double distance;
 

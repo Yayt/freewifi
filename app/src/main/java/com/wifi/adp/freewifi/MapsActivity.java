@@ -491,6 +491,13 @@ public class MapsActivity extends FragmentActivity {
         protected String doInBackground(String... url) {
             //TODO get and set distances for each object
             String data = "";
+            for (int i = 0; i<wifiObjects.size();i++){
+                Location dest = new Location("");
+                dest.setLatitude(wifiObjects.get(i).getLatitude());
+                dest.setLongitude(wifiObjects.get(i).getLongitude());
+                double estimatedDistance = mMyLocation.distanceTo(dest);
+                wifiObjects.get(i).setDistance(estimatedDistance);
+            }
             return data;
         }
     }
