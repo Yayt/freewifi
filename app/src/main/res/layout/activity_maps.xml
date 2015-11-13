@@ -180,11 +180,16 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/sorting_icon" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:id="@+id/alphabeticSortBox"
@@ -211,10 +216,26 @@
                         <ImageView
                             android:id="@+id/alphabeticSortImage"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center_vertical|end"
                             android:src="@drawable/arrow_square_sorting" />
                     </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <LinearLayout
                         android:id="@+id/distanceSortBox"
@@ -241,11 +262,17 @@
                         <ImageView
                             android:id="@+id/distanceSortImage"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center_vertical|end"
                             android:src="@drawable/arrow_square_sorting" />
                     </LinearLayout>
-                </RelativeLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
             </LinearLayout>
 
             <ListView
