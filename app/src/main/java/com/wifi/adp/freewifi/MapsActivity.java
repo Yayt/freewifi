@@ -383,12 +383,12 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void toggleBackgroundWhite(TextView textView) {
-        textView.setBackgroundColor(-1);
+        textView.setBackgroundResource(R.drawable.selectedsort);
         textView.setTextColor(getResources().getColor(android.R.color.black));
     }
 
     public void toggleBackgroundBlack(TextView textView) {
-        textView.setBackgroundColor(getResources().getColor(android.R.color.black));
+        textView.setBackgroundResource(R.drawable.deselectedsort);
         textView.setTextColor(-1);
     }
 
