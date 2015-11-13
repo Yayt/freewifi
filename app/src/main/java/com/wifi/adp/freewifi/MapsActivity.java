@@ -78,9 +78,12 @@ public class MapsActivity extends FragmentActivity {
                 firstClick = true;
                 currentMarker = marker;
                 marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
-                routeSearch(marker);
+
                 openInfoBar();
+                routeSearch(marker);
+
                 //TODO Check for internet
+                //Toast.makeText(getBaseContext(), "You are not connected to the internet", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
@@ -499,7 +502,6 @@ public class MapsActivity extends FragmentActivity {
     private class DistanceTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... url) {
-            //TODO get and set distances for each object
             String data = "";
             for (int i = 0; i < wifiObjects.size(); i++) {
                 Location dest = new Location("");
