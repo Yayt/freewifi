@@ -126,7 +126,7 @@ public class MapsActivity extends FragmentActivity {
         alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
         distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
 
-        //TODO set google watermark to a nice place
+        //TODO set google watermark to a nice place and still remove the right buttons
         mMap.setPadding(0, 0, 0, 0);
 
         //TODO fix layout on other resolution devices
