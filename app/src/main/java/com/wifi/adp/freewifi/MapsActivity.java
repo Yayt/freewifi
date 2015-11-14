@@ -372,7 +372,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openMoreInfo(View view) {
-        //TODO Add from the infobar
+        //TODO Add from the infobar (Future version)
     }
 
     public void openPrivacyPolicy(View view) {
@@ -409,7 +409,6 @@ public class MapsActivity extends FragmentActivity {
     public void toggleBackgroundBlack(LinearLayout linearLayout, TextView textView, ImageView imageView) {
         linearLayout.setBackgroundResource(R.drawable.deselectedsort);
         textView.setTextColor(-1);
-        //TODO fix imageview location in linearview
         imageView.setImageResource(R.drawable.arrow_square_sorting);
     }
 
