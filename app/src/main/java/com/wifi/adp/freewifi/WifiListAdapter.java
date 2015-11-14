@@ -33,6 +33,8 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
         if (thisWifiObject != null) {
             TextView tv = (TextView) targetView.findViewById(R.id.nameText);
             tv.setText(thisWifiObject.getName_en());
+
+            //TODO: Somehow get the right length unit here.
             tv = (TextView) targetView.findViewById(R.id.distanceText);
             double distanceMetric = thisWifiObject.getDistance();
             if (thisWifiObject.getDistance() >= 1000) {

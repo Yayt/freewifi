@@ -153,7 +153,6 @@ public class MapsActivity extends FragmentActivity {
         TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
-        //TODO: Remove computelengh and just estimate it again
         //double distance = SphericalUtil.computeLength(path);
         double distance = 0;
 
@@ -227,7 +226,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void calculateDistances() {
-        //TODO calculate distances to each of the wifispots (preferable in background)
+        //calculate distances to each of the wifispots
         DistanceTask distanceTask = new DistanceTask();
         distanceTask.execute();
     }
