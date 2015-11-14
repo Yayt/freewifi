@@ -213,6 +213,11 @@
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
 
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
                         <ImageView
                             android:id="@+id/alphabeticSortImage"
                             android:layout_width="wrap_content"
@@ -258,6 +263,11 @@
                             android:text="DIST"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
 
                         <ImageView
                             android:id="@+id/distanceSortImage"
