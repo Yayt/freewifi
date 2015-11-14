@@ -26,6 +26,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -124,6 +125,11 @@ public class MapsActivity extends FragmentActivity {
         distanceSort = (TextView) findViewById(R.id.distanceSort);
         alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
         distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
+
+        //TODO set google watermark to a nice place
+        mMap.setPadding(0, 0, 0, 0);
+
+        //TODO fix layout on other resolution devices
     }
 
     private void hideInfoBar() {
@@ -260,9 +266,9 @@ public class MapsActivity extends FragmentActivity {
                 distanceImperial = distanceImperial / 528;
                 distanceImperial = Math.round(distanceImperial * 100) / 100;
                 distanceImperial = distanceImperial / 10;
-                distanceText.setText(distanceImperial + " miles");
+                distanceText.setText(distanceImperial + " mi");
             } else {
-                distanceText.setText((int) distanceImperial + " feet");
+                distanceText.setText((int) distanceImperial + " ft");
             }
         }
     }
