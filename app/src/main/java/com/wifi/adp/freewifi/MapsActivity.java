@@ -346,7 +346,6 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void switchUnits(View view) {
-        //TODO Actually switch units instead of only showing it
         TextView unitText = (TextView) findViewById(R.id.unitOfLengthUsed);
         if (unitText.getText().equals("Metric")) {
             unitText.setText("Imperial");
@@ -358,6 +357,7 @@ public class MapsActivity extends FragmentActivity {
         if (openedInfoBar) {
             writeDistance(distance);
         }
+        adapter.notifyDataSetChanged();
     }
 
     public void openPlayStore(View view) {
