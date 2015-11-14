@@ -69,6 +69,12 @@ public class MapsActivity extends FragmentActivity {
     public static String info_A = "";
     public static String info_B = "";
     public boolean firstClick = false;
+    LinearLayout alphabeticSortBox;
+    LinearLayout distanceSortBox;
+    TextView alphabeticSort;
+    TextView distanceSort;
+    ImageView alphabeticSortImage;
+    ImageView distanceSortImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +113,17 @@ public class MapsActivity extends FragmentActivity {
                 hideInfoBar();
             }
         });
+        setUpLayout();
+    }
+
+    private void setUpLayout() {
         vf = (ViewAnimator) findViewById(R.id.viewFlipper);
+        alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
+        distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
+        alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
+        distanceSort = (TextView) findViewById(R.id.distanceSort);
+        alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
+        distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
     }
 
     private void hideInfoBar() {
@@ -372,13 +388,6 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void sortAlphabetic(View view) {
-        //TODO: Make class variables
-        LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
-        LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
-        TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
-        TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
-        ImageView alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
-        ImageView distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
         toggleBackgroundWhite(alphabeticSortBox, alphabeticSort, alphabeticSortImage);
         toggleBackgroundBlack(distanceSortBox, distanceSort, distanceSortImage);
 
@@ -406,12 +415,6 @@ public class MapsActivity extends FragmentActivity {
 
     public void sortDistance(View view) {
         //TODO: Make class variables
-        LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
-        LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
-        TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
-        TextView distanceSort = (TextView) findViewById(R.id.distanceSort);
-        ImageView alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
-        ImageView distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
         toggleBackgroundBlack(alphabeticSortBox, alphabeticSort, alphabeticSortImage);
         toggleBackgroundWhite(distanceSortBox, distanceSort, distanceSortImage);
 
