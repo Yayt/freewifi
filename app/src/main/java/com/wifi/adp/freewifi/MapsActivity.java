@@ -372,6 +372,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void sortAlphabetic(View view) {
+        //TODO: Make class variables
         LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
         LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
         TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
@@ -403,6 +404,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void sortDistance(View view) {
+        //TODO: Make class variables
         LinearLayout alphabeticSortBox = (LinearLayout) findViewById(R.id.alphabeticSortBox);
         LinearLayout distanceSortBox = (LinearLayout) findViewById(R.id.distanceSortBox);
         TextView alphabeticSort = (TextView) findViewById(R.id.alphabeticSort);
