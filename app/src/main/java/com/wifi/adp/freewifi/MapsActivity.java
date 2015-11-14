@@ -121,7 +121,12 @@ public class MapsActivity extends FragmentActivity {
                 hideInfoBar();
             }
         });
+
         setUpLayout();
+        setUpInAppPurchase();
+    }
+
+    private void setUpInAppPurchase() {
         mServiceConn = new ServiceConnection() {
             @Override
             public void onServiceDisconnected(ComponentName name) {
