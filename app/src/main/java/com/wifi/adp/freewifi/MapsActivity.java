@@ -250,6 +250,9 @@ public class MapsActivity extends FragmentActivity {
             public void onMyLocationChange(Location location) {
                 mMyLocation = location;
                 calculateDistances();
+
+                //Update listview with new distances
+                adapter.notifyDataSetChanged();
                 if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
                     mMyLocationCentering = true;
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
