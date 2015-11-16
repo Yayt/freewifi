@@ -1,9 +1,11 @@
 package com.wifi.adp.freewifi;
 
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,6 +13,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -83,6 +86,7 @@ public class MapsActivity extends FragmentActivity {
     ImageView distanceSortImage;
     IInAppBillingService mService;
     ServiceConnection mServiceConn;
+    Bundle skuDetails = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,22 +131,6 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void setUpInAppPurchase() {
-        mServiceConn = new ServiceConnection() {
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                mService = null;
-            }
-
-            @Override
-            public void onServiceConnected(ComponentName name,
-                                           IBinder service) {
-                mService = IInAppBillingService.Stub.asInterface(service);
-            }
-        };
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
     }
 
     private void setUpLayout() {
@@ -468,6 +456,9 @@ public class MapsActivity extends FragmentActivity {
             }
         });
         adapter.notifyDataSetChanged();
+    }
+
+    public void getPremium(View view) {
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
