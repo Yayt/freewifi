@@ -190,6 +190,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
+
                     <LinearLayout
                         android:id="@+id/alphabeticSortBox"
                         android:layout_width="wrap_content"
@@ -208,6 +209,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="10px"
                             android:layout_marginStart="10px"
+
                             android:text="A - Z"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
@@ -215,7 +217,7 @@
                         <Space
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <ImageView
                             android:id="@+id/alphabeticSortImage"
@@ -240,6 +242,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
+
 
                     <LinearLayout
                         android:id="@+id/distanceSortBox"
@@ -266,7 +269,7 @@
                         <Space
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <ImageView
                             android:id="@+id/distanceSortImage"
