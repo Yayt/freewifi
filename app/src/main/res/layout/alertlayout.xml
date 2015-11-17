@@ -14,7 +14,7 @@
         android:singleLine="false"
         android:text="Privacy Policy"
         android:textColor="#ffffff"
-        android:textSize="42px" />
+        android:textSize="50px" />
 
     <ImageView
         android:layout_width="fill_parent"
@@ -250,6 +250,7 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
 
+
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
@@ -260,6 +261,316 @@
                     android:textColor="#ffffff"
                     android:textSize="30px" />
 
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView18"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/additionaldata"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView19"
+                    android:paddingTop="10px"
+                    android:text="@string/additionaldatatext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView20"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/systemlogs"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView21"
+                    android:paddingTop="10px"
+                    android:text="@string/systemlogstext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView22"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/notcontained"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView23"
+                    android:paddingTop="10px"
+                    android:text="@string/notcontainedtext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView23"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/rights"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView24"
+                    android:paddingTop="10px"
+                    android:text="@string/rightstext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView25"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/changes"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView26"
+                    android:paddingTop="10px"
+                    android:text="@string/changestext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/TEXT_STATUS_ID3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView27"
+                    android:layout_weight="1.0"
+                    android:fontFamily="SourceSansPro"
+                    android:text="@string/thirdtitle"
+                    android:textColor="#ffffff"
+                    android:textSize="40px"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TEXT_STATUS_ID3"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/personaldata"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView28"
+                    android:paddingTop="10px"
+                    android:text="@string/personaldatatext2"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView29"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/usage"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView30"
+                    android:paddingTop="10px"
+                    android:text="@string/usagetext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView31"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/user"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView32"
+                    android:paddingTop="10px"
+                    android:text="@string/usertext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView31"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/subject"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView32"
+                    android:paddingTop="10px"
+                    android:text="@string/subjecttext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView33"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/processor"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView34"
+                    android:paddingTop="10px"
+                    android:text="@string/processortext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView35"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/controller"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView36"
+                    android:paddingTop="10px"
+                    android:text="@string/controllertext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView37"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/app"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView38"
+                    android:paddingTop="10px"
+                    android:text="@string/apptext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView39"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/cookie"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView40"
+                    android:paddingTop="10px"
+                    android:text="@string/cookietext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView41"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/legalinfo"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/textView43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView42"
+                    android:paddingTop="10px"
+                    android:text="@string/legalinfotext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
             </RelativeLayout>
         </ScrollView>
     </LinearLayout>
