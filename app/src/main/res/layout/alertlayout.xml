@@ -329,10 +329,10 @@
                     android:textSize="30px" />
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/textView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView23"
+                    android:layout_below="@+id/textView24"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/rights"
@@ -341,20 +341,20 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/textView26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView24"
+                    android:layout_below="@id/textView25"
                     android:paddingTop="10px"
                     android:text="@string/rightstext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView25"
+                    android:layout_below="@+id/textView26"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/changes"
@@ -363,10 +363,10 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/textView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView26"
+                    android:layout_below="@id/textView27"
                     android:paddingTop="10px"
                     android:text="@string/changestext"
                     android:textColor="#ffffff"
@@ -376,7 +376,7 @@
                     android:id="@+id/TEXT_STATUS_ID3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView27"
+                    android:layout_below="@id/textView28"
                     android:layout_weight="1.0"
                     android:fontFamily="SourceSansPro"
                     android:text="@string/thirdtitle"
@@ -385,7 +385,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TEXT_STATUS_ID3"
@@ -397,19 +397,19 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView29"
+                    android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView28"
+                    android:layout_below="@id/textView29"
                     android:paddingTop="10px"
                     android:text="@string/personaldatatext2"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/textView30"
+                    android:id="@+id/textView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView29"
+                    android:layout_below="@id/textView30"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/usage"
@@ -417,19 +417,19 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/textView31"
+                    android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView30"
+                    android:layout_below="@id/textView31"
                     android:paddingTop="10px"
                     android:text="@string/usagetext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/textView32"
+                    android:id="@+id/textView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView31"
+                    android:layout_below="@id/textView32"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/user"
@@ -437,20 +437,20 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/textView33"
+                    android:id="@+id/textView34"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView32"
+                    android:layout_below="@id/textView33"
                     android:paddingTop="10px"
                     android:text="@string/usertext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
 
                 <TextView
-                    android:id="@+id/textView32"
+                    android:id="@+id/textView35"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView31"
+                    android:layout_below="@id/textView34"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/subject"
@@ -459,19 +459,19 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView33"
+                    android:id="@+id/textView36"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView32"
+                    android:layout_below="@id/textView35"
                     android:paddingTop="10px"
                     android:text="@string/subjecttext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView33"
+                    android:layout_below="@id/textView36"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/processor"
@@ -480,20 +480,20 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/textView38"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView34"
+                    android:layout_below="@id/textView37"
                     android:paddingTop="10px"
                     android:text="@string/processortext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
 
                 <TextView
-                    android:id="@+id/textView36"
+                    android:id="@+id/textView39"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView35"
+                    android:layout_below="@id/textView38"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/controller"
@@ -502,20 +502,20 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/textView40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView36"
+                    android:layout_below="@id/textView39"
                     android:paddingTop="10px"
                     android:text="@string/controllertext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/textView41"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView37"
+                    android:layout_below="@id/textView40"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/app"
@@ -523,19 +523,19 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/textView39"
+                    android:id="@+id/textView42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView38"
+                    android:layout_below="@id/textView41"
                     android:paddingTop="10px"
                     android:text="@string/apptext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/textView40"
+                    android:id="@+id/textView43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView39"
+                    android:layout_below="@id/textView42"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/cookie"
@@ -543,19 +543,19 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView40"
+                    android:layout_below="@id/textView43"
                     android:paddingTop="10px"
                     android:text="@string/cookietext"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView41"
+                    android:layout_below="@id/textView44"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/legalinfo"
@@ -564,10 +564,10 @@
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView43"
+                    android:id="@+id/textView46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView42"
+                    android:layout_below="@id/textView45"
                     android:paddingTop="10px"
                     android:text="@string/legalinfotext"
                     android:textColor="#ffffff"
