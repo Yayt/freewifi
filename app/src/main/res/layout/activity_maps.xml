@@ -114,6 +114,8 @@
                     android:paddingBottom="20px"
                     android:paddingStart="140px"
                     android:paddingTop="20px"
+                    android:maxLines="2"
+                    android:scrollHorizontally="true"
                     android:textColor="#00ACAD"
                     android:textSize="70px" />
 
@@ -209,7 +211,6 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="10px"
                             android:layout_marginStart="10px"
-
                             android:text="A - Z"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
