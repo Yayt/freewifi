@@ -84,9 +84,6 @@ public class MapsActivity extends FragmentActivity {
     TextView distanceSort;
     ImageView alphabeticSortImage;
     ImageView distanceSortImage;
-    IInAppBillingService mService;
-    ServiceConnection mServiceConn;
-    Bundle skuDetails = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,14 +182,6 @@ public class MapsActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mService != null) {
-            unbindService(mServiceConn);
-        }
     }
 
     private void setUpMapIfNeeded() {
