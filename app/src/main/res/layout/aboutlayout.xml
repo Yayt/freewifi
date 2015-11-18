@@ -86,6 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:id="@+id/dialog_layout_root2"
                     android:layout_below="@+id/fourth_text"
                     android:orientation="horizontal">
 
@@ -109,19 +110,20 @@
 
                 </LinearLayout>
                 <TextView
-                    android:id="@+id/third_text"
+                    android:id="@+id/five_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/second_text"
+
+                    android:layout_below="@+id/dialog_layout_root2"
                     android:paddingTop="10px"
                     android:text="@string/names"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/fourth_text"
+                    android:id="@+id/six_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/third_text"
+                    android:layout_below="@id/five_text"
                     android:paddingLeft="45px"
                     android:paddingTop="10px"
                     android:text="@string/supervisors"
@@ -129,19 +131,19 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/third_text"
+                    android:id="@+id/seven_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/second_text"
+                    android:layout_below="@id/six_text"
                     android:paddingTop="10px"
                     android:text="@string/supervisorname"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
                 <TextView
-                    android:id="@+id/third_text"
+                    android:id="@+id/ei_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/second_text"
+                    android:layout_below="@id/seven_text"
                     android:paddingTop="10px"
                     android:text="@string/thanks"
                     android:textColor="#ffffff"
