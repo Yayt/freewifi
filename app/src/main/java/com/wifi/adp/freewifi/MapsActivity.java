@@ -138,6 +138,9 @@ public class MapsActivity extends FragmentActivity {
         distanceSort = (TextView) findViewById(R.id.distanceSort);
         alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
         distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
+        AutoResizeTextView autoResizeTextView = (AutoResizeTextView) findViewById(R.id.wifiname);
+
+        autoResizeTextView.setMinTextSize(50);
 
         //TODO set google watermark to a nice place and still remove the right buttons
         mMap.setPadding(0, 0, 0, 0);
@@ -163,7 +166,7 @@ public class MapsActivity extends FragmentActivity {
         params.height = -2;
 //        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
 
-        TextView wifiNameText = (TextView) findViewById(R.id.wifiname);
+        AutoResizeTextView wifiNameText = (AutoResizeTextView) findViewById(R.id.wifiname);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
         //double distance = SphericalUtil.computeLength(path);

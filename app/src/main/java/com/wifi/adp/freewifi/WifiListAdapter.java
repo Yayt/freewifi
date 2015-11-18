@@ -32,7 +32,7 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
 
         if (thisWifiObject != null) {
             TextView tv = (TextView) targetView.findViewById(R.id.nameText);
-            tv.setText(thisWifiObject.getName_en());
+            tv.setText(thisWifiObject.getName_en().toUpperCase());
 
             //Get the unit of length used
             TextView unitOfLengthView = (TextView) ((Activity) getContext()).findViewById(R.id.unitOfLengthUsed);
@@ -40,7 +40,7 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
 
             tv = (TextView) targetView.findViewById(R.id.distanceText);
 
-            //Setting the right distance and format
+            //Setting the right distance and FORMAT
             double distance = thisWifiObject.getDistance();
             if (unitOfLength.equals("Metric")) {
                 double distanceMetric = distance;

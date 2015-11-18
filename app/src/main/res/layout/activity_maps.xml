@@ -102,7 +102,24 @@
                     android:paddingLeft="40px"
                     android:src="@drawable/open_wifi_icon" />
 
-                <TextView
+                <!--<TextView-->
+                    <!--android:id="@+id/wifiname"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_toLeftOf="@+id/startNavigating"-->
+                    <!--android:layout_toRightOf="@+id/wifilogoicon"-->
+                    <!--android:paddingBottom="20px"-->
+                    <!--android:paddingStart="140px"-->
+                    <!--android:paddingTop="20px"-->
+                    <!--android:maxLines="2"-->
+                    <!--android:scrollHorizontally="true"-->
+                    <!--android:textColor="#00ACAD"-->
+                    <!--android:textSize="70px" />-->
+
+                <com.wifi.adp.freewifi.AutoResizeTextView
                     android:id="@+id/wifiname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,13 +128,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toLeftOf="@+id/startNavigating"
                     android:layout_toRightOf="@+id/wifilogoicon"
-                    android:paddingBottom="20px"
                     android:paddingStart="140px"
-                    android:paddingTop="20px"
-                    android:maxLines="2"
-                    android:scrollHorizontally="true"
+                    android:maxHeight="215px"
                     android:textColor="#00ACAD"
-                    android:textSize="70px" />
+                    android:textSize="70px"/>
 
                 <LinearLayout
                     android:id="@+id/startNavigating"
