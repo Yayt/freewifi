@@ -138,8 +138,10 @@ public class MapsActivity extends FragmentActivity {
         distanceSort = (TextView) findViewById(R.id.distanceSort);
         alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
         distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
-        AutoResizeTextView autoResizeTextView = (AutoResizeTextView) findViewById(R.id.wifiname);
 
+        AutoResizeTextView autoResizeTextView = (AutoResizeTextView) findViewById(R.id.wifiname);
+        autoResizeTextView.setMinLines(1);
+        autoResizeTextView.setMaxLines(2);
         autoResizeTextView.setMinTextSize(50);
 
         //TODO set google watermark to a nice place and still remove the right buttons
@@ -575,7 +577,6 @@ public class MapsActivity extends FragmentActivity {
                 clickMarkerFromList(wifiObjects.get(position).getMarker());
             }
         });
-
     }
 
     public boolean clickMarkerFromList(Marker marker) {

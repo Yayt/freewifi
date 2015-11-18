@@ -2,6 +2,7 @@ package com.wifi.adp.freewifi;
 
 import android.app.Activity;
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +32,14 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
         WifiObject thisWifiObject = wifiObjects.get(position);
 
         if (thisWifiObject != null) {
-            TextView tv = (TextView) targetView.findViewById(R.id.nameText);
+            AutoResizeTextView tv = (AutoResizeTextView) targetView.findViewById(R.id.nameText);
             tv.setText(thisWifiObject.getName_en().toUpperCase());
 
             //Get the unit of length used
             TextView unitOfLengthView = (TextView) ((Activity) getContext()).findViewById(R.id.unitOfLengthUsed);
             String unitOfLength = (String) unitOfLengthView.getText();
 
-            tv = (TextView) targetView.findViewById(R.id.distanceText);
+            TextView tvT = (TextView) targetView.findViewById(R.id.distanceText);
 
             //Setting the right distance and FORMAT
             double distance = thisWifiObject.getDistance();
@@ -48,9 +49,9 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
                     distanceMetric = distanceMetric / 100;
                     distanceMetric = Math.round(distanceMetric * 100) / 100;
                     distanceMetric = distanceMetric / 10;
-                    tv.setText(distanceMetric + " km");
+                    tvT.setText(distanceMetric + " km");
                 } else {
-                    tv.setText(Integer.toString((int) thisWifiObject.getDistance()) + " m");
+                    tvT.setText(Integer.toString((int) thisWifiObject.getDistance()) + " m");
                 }
             } else {
                 //meters to feet
@@ -61,9 +62,9 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
                     distanceImperial = distanceImperial / 528;
                     distanceImperial = Math.round(distanceImperial * 100) / 100;
                     distanceImperial = distanceImperial / 10;
-                    tv.setText(distanceImperial + " mi");
+                    tvT.setText(distanceImperial + " mi");
                 } else {
-                    tv.setText((int) distanceImperial + " ft");
+                    tvT.setText((int) distanceImperial + " ft");
                 }
             }
         }
