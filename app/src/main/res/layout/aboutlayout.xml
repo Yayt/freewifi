@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#3d3c3e"
+    android:orientation="vertical"
+    android:textColor="#000000">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px"
+        android:singleLine="false"
+        android:text="About us"
+        android:textColor="#ffffff"
+        android:textSize="50px" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#4e4d4e"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="30px">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="300dp">
+
+                <TextView
+                    android:id="@+id/first_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10px"
+                    android:text="@string/abouttext"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+                <TextView
+                    android:id="@+id/second_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/first_text"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/contact"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/third_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/second_text"
+                    android:paddingTop="10px"
+                    android:text="@string/contact_text"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+
+
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

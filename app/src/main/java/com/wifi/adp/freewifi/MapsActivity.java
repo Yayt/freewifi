@@ -405,7 +405,11 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void openAboutUs(View view) {
-        //TODO Copy from openPrivacyPolicy
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogue = inflater.inflate(R.layout.aboutlayout, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogue);
+        builder.show();
     }
 
     public void sortAlphabetic(View view) {
