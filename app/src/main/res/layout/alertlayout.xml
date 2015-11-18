@@ -234,6 +234,7 @@
                     android:layout_weight="1.0"
                     android:fontFamily="SourceSansPro"
                     android:text="@string/secondtitle"
+                    android:paddingTop="10px"
                     android:textColor="#ffffff"
                     android:textSize="40px"
                     android:textStyle="bold|italic" />
@@ -381,6 +382,7 @@
                     android:fontFamily="SourceSansPro"
                     android:text="@string/thirdtitle"
                     android:textColor="#ffffff"
+                    android:paddingTop="10px"
                     android:textSize="40px"
                     android:textStyle="bold|italic" />
 
