@@ -562,6 +562,7 @@
                     android:textColor="#ffffff"
                     android:textSize="36px"
                     android:textStyle="italic" />
+
                 <TextView
                     android:id="@+id/textView43"
                     android:layout_width="wrap_content"
