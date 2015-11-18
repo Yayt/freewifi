@@ -63,7 +63,9 @@
     <string name="legalinfotext">Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies. This privacy policy relates solely to this Application.</string>
     <string name="abouttext">The Free Wifi app was developed by six future-oriented guys in 2015. The Team was founded during the “Application development project” at Helsinki Metropolia University of applied sciences. As we experience problems connecting to the internet without mobile data by ourselves, we wanted to help people with the same problem. That was the fundamental idea of this app.</string>
     <string name="contact">Contact</string>
-    <string name="contact_text">Kevin Marczyk\n kevinmarczyk@gmail.com\n Groningen downtown\n NL</string>
+    <string name="contact_text"> Kevin Marczyk\n kevinmarczyk@gmail.com\n Groningen downtown\n NL</string>
+    <string name="team">Team</string>
+    <string name="nguyen">Nguyen</string>
 
     >>>>>>> Stashed changes
 </resources>

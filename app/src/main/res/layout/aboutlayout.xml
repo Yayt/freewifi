@@ -68,9 +68,46 @@
                     android:text="@string/contact_text"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
+                <TextView
+                    android:id="@+id/fourth_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/third_text"
+                    android:paddingLeft="45px"
+                    android:paddingTop="10px"
+                    android:text="@string/team"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    android:textStyle="italic" />
+                <LinearLayout
+                    android:id="@+id/startNavigating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_below="@+id/fourth_text"
+                    android:layout_weight="1"
+                    android:onClick="startNavigation"
+                    android:orientation="vertical"
+                   >
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:layout_gravity="left"
+                    android:foregroundGravity="left"
+                    android:src="@drawable/duck_sad"/>
+                    <TextView
+                        android:id="@+id/duc_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10px"
+                        android:text="@string/nguyen"
+                        android:textColor="#ffffff"
+                        android:textSize="30px" />
 
-
+                </LinearLayout>
             </RelativeLayout>
         </ScrollView>
     </LinearLayout>
