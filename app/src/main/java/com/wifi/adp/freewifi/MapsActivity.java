@@ -551,7 +551,7 @@ public class MapsActivity extends FragmentActivity {
         double[] distances = new double[wifiObjects.size()];
 
         for (int i = 0; i < wifiObjects.size(); i++) {
-            names[i] = wifiObjects.get(i).getName_en();
+            names[i] = wifiObjects.get(i).getName_en().toUpperCase();
         }
         //Old standard ArrayAdapter
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, R.id.nameText, names);
