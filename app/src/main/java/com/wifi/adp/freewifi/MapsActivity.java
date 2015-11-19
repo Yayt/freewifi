@@ -1,26 +1,22 @@
 package com.wifi.adp.freewifi;
 
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.ServiceConnection;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,23 +30,16 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.maps.android.SphericalUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.wifi.adp.freewifi.util.IabHelper;
-import com.wifi.adp.freewifi.util.IabResult;
-import com.wifi.adp.freewifi.util.Inventory;
-import com.wifi.adp.freewifi.util.Purchase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -88,10 +77,22 @@ public class MapsActivity extends FragmentActivity {
     TextView distanceSort;
     ImageView alphabeticSortImage;
     ImageView distanceSortImage;
-    IabHelper mHelper;
-    boolean mIsPremium = false;
-    static final String SKU_PREMIUM = "premium";
-    static final String TAG = "FreeWifi";
+
+    //IAP stuff
+    IInAppBillingService mService;
+    boolean mIsPremium;
+    ServiceConnection mServiceConn = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name,
+                                       IBinder service) {
+            mService = IInAppBillingService.Stub.asInterface(service);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,134 +137,50 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void setUpInAppPurchase() {
-        String base64EncodedPublicKey = getString(R.string.base64EncodedPublicKey);
-        mHelper = new IabHelper(this, base64EncodedPublicKey);
+        Intent serviceIntent =
+                new Intent("com.android.vending.billing.InAppBillingService.BIND");
+        serviceIntent.setPackage("com.android.vending");
+        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
-        // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(true);
+        ArrayList<String> skuList = new ArrayList<String>();
+        skuList.add("premium");
+        Bundle querySkus = new Bundle();
+        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
 
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                Log.d(TAG, "Setup finished.");
+        Bundle skuDetails = null;
+        try {
+            skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
-                if (!result.isSuccess()) {
-                    // Oh noes, there was a problem.
-                    complain("Problem setting up in-app billing: " + result);
-                    return;
+        int response = skuDetails.getInt("RESPONSE_CODE");
+        if (response == 0) {
+            ArrayList<String> responseList
+                    = skuDetails.getStringArrayList("DETAILS_LIST");
+
+            for (String thisResponse : responseList) {
+                String sku = "";
+                String price = "";
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(thisResponse);
+                    sku = object.getString("productId");
+                    price = object.getString("price");
+                    Log.i("Price + id", sku + price);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
-
-                // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                Log.d(TAG, "Setup successful. Querying inventory.");
-                List additionalSkuList = new ArrayList();
-                additionalSkuList.add(SKU_PREMIUM);
-                mHelper.queryInventoryAsync(true, additionalSkuList,
-                        mQueryFinishedListener);
-            }
-        });
-    }
-
-    IabHelper.QueryInventoryFinishedListener mQueryFinishedListener  = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-            Log.d(TAG, "Query inventory finished.");
-
-            // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return;
-
-            // Is it a failure?
-            if (result.isFailure()) {
-                complain("Failed to query inventory: " + result);
-                return;
-            }
-
-            Log.d(TAG, "Query inventory was successful.");
-
-            /*
-             * Check for items we own. Notice that for each purchase, we check
-             * the developer payload to see if it's correct! See
-             * verifyDeveloperPayload().
-             */
-
-            // Do we have the premium upgrade?
-            Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
-            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
-            Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-        }
-    };
-    // Callback for when a purchase is finished
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
-
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
-
-            if (result.isFailure()) {
-                complain("Error purchasing: " + result);
-                return;
-            }
-            if (!verifyDeveloperPayload(purchase)) {
-                complain("Error purchasing. Authenticity verification failed.");
-                return;
-            }
-
-            Log.d(TAG, "Purchase successful.");
-
-            if (purchase.getSku().equals(SKU_PREMIUM)) {
-                Log.d(TAG, "Thanks for your support!");
             }
         }
-    };
-
-    void complain(String message) {
-        Log.e(TAG, "**** TrivialDrive Error: " + message);
-        alert("Error: " + message);
-    }
-
-    void alert(String message) {
-        AlertDialog.Builder bld = new AlertDialog.Builder(this);
-        bld.setMessage(message);
-        bld.setNeutralButton("OK", null);
-        Log.d(TAG, "Showing alert dialog: " + message);
-        bld.create().show();
-    }
-
-    boolean verifyDeveloperPayload(Purchase p) {
-        String payload = p.getDeveloperPayload();
-
-        /*
-         * TODO: verify that the developer payload of the purchase is correct. It will be
-         * the same one that you sent when initiating the purchase.
-         *
-         * WARNING: Locally generating a random string when starting a purchase and
-         * verifying it here might seem like a good approach, but this will fail in the
-         * case where the user purchases an item on one device and then uses your app on
-         * a different device, because on the other device you will not have access to the
-         * random string you originally generated.
-         *
-         * So a good developer payload has these characteristics:
-         *
-         * 1. If two different users purchase an item, the payload is different between them,
-         *    so that one user's purchase can't be replayed to another user.
-         *
-         * 2. The payload must be such that you can verify it even when the app wasn't the
-         *    one who initiated the purchase flow (so that items purchased by the user on
-         *    one device work on other devices owned by the user).
-         *
-         * Using your own server to store and verify developer payloads across app
-         * installations is recommended.
-         */
-
-        return true;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mHelper != null) mHelper.dispose();
-        mHelper = null;
+        if (mService != null) {
+            unbindService(mServiceConn);
+        }
     }
 
     private void setUpLayout() {
@@ -323,6 +240,12 @@ public class MapsActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        adapter.notifyDataSetChanged();
+        if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
+            mMyLocationCentering = true;
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
+            mMap.animateCamera(cameraUpdate);
+        }
     }
 
     private void setUpMapIfNeeded() {
@@ -528,14 +451,13 @@ public class MapsActivity extends FragmentActivity {
 
     public void startNavigation(View view) {
         //Starts navigation in walking mode
-        if(mIsPremium){
+        if (mIsPremium) {
             Uri gmmIntentUri = Uri.parse("google.navigation:q=" + currentMarker.getPosition().latitude + "," + currentMarker.getPosition().longitude + "&mode=w");
             Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             startActivity(intent);
-        }else{
+        } else {
             Toast.makeText(getBaseContext(), "You need premium for this function", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void openMoreInfo(View view) {
@@ -598,15 +520,6 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void getPremium(View view) {
-        Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
-
-        /* TODO: for security, generate your payload here for verification. See the comments on
-         *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
-         *        an empty string, but on a production app you should carefully generate this. */
-        String payload = "";
-
-        mHelper.launchPurchaseFlow(this, SKU_PREMIUM, 10001,
-                mPurchaseFinishedListener, payload);
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {

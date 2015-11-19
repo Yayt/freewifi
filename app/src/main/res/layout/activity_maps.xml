@@ -411,6 +411,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:onClick="getPremium"
+                        android:clickable="true"
                         android:paddingLeft="50px"
                         android:text="@string/getPremium"
                         android:textColor="#919191" />
