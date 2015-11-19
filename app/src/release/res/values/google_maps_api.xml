@@ -4,10 +4,10 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=D1:4E:E8:CC:B2:E2:47:2D:BB:64:CA:68:E5:10:B8:86:EE:C7:4D:26%3Bcom.wifi.adp.freewifi
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=77:29:3C:40:C3:AA:43:20:83:FE:CA:3B:30:8C:89:8B:C4:0A:D6:A5%3Bcom.wifi.adp.freewifi
 
     You can also add your credentials to an existing key, using this line:
-    D1:4E:E8:CC:B2:E2:47:2D:BB:64:CA:68:E5:10:B8:86:EE:C7:4D:26;com.wifi.adp.freewifi
+    77:29:3C:40:C3:AA:43:20:83:FE:CA:3B:30:8C:89:8B:C4:0A:D6:A5;com.wifi.adp.freewifi
 
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.

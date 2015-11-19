@@ -43,6 +43,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.wifi.adp.freewifi.util.IabHelper;
+import com.wifi.adp.freewifi.util.IabResult;
+import com.wifi.adp.freewifi.util.Inventory;
+import com.wifi.adp.freewifi.util.Purchase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,6 +89,10 @@ public class MapsActivity extends FragmentActivity {
     ImageView alphabeticSortImage;
     ImageView distanceSortImage;
     IabHelper mHelper;
+    boolean mIsPremium = false;
+    static final String SKU_PREMIUM = "premium";
+    static final String TAG = "TrivialDrive";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +137,17 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void setUpInAppPurchase() {
-        String base64EncodedPublicKey;
+        String base64EncodedPublicKey = getString(R.string.base64EncodedPublicKey);
+        mHelper = new IabHelper(this, base64EncodedPublicKey);
+
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mHelper != null) mHelper.dispose();
+        mHelper = null;
     }
 
     private void setUpLayout() {

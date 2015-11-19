@@ -70,6 +70,5 @@
     <string name="supervisors">Supervisors</string>
     <string name="supervisorname">Nina Hellmann\nMerja Bauters\nPetri Vesikivi\nPauli Laine</string>
     <string name="thanks">Special thanks to HRI Helsinki for providing the open data set.</string>
-
-    >>>>>>> Stashed changes
+    <string name="base64EncodedPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4MSnmyoWF61HyeJUzdCAmO/OV85He5KHpb08lE1a+Y/Rhu7pnaVhmfs1hiQXT/XzbwkmVjtmzwQYJ5XTvacLyKOap80zDXD/0qbze7r5BtwAN+G/Iqyt6f3DDdg6jbwKGUicVglptEVTg9kw2TQDDUfUCukWTjBdOoRvQCnlKS5Crav0BY+h6U3Y94TMnWBUl8jzMq73Lz/FTEy+wkECxgNfDv9DPebgvFUXALLs/KQAqf8UlzDYrrH1NZIoSmyRy/GlMLYqrQG+U5PWTyyddqms7T6hH10VLcco7B/c0FDOZu1OPpU5xpR4GdlWiPYpNmR3a81BwnldSxFaEb/6KwIDAQAB</string>
 </resources>
