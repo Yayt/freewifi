@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +35,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.wifi.adp.freewifi.util.IabHelper;
+import com.wifi.adp.freewifi.util.IabResult;
+import com.wifi.adp.freewifi.util.Purchase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,20 +81,12 @@ public class MapsActivity extends FragmentActivity {
     ImageView distanceSortImage;
 
     //IAP stuff
-    IInAppBillingService mService;
-    boolean mIsPremium;
-    ServiceConnection mServiceConn = new ServiceConnection() {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-        }
+    IabHelper mHelper;
+    final String TAG = "IAP";
+    final String SKU_PREMIUM = "premium";
+    boolean mIsPremium = false;
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
 
-        @Override
-        public void onServiceConnected(ComponentName name,
-                                       IBinder service) {
-            mService = IInAppBillingService.Stub.asInterface(service);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,50 +131,39 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void setUpInAppPurchase() {
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+        String base64EncodedPublicKey = null;
+        mHelper = new IabHelper(this, base64EncodedPublicKey);
+        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            public void onIabSetupFinished(IabResult result) {
+                if (!result.isSuccess()) {
+                    // Oh noes, there was a problem.
+                    Log.d(TAG, "Problem setting up In-app Billing: " + result);
+                } else {
+                    // Hooray, IAB is fully set up!
+                    Log.d(TAG, "Successfully set up IAP:  " + result);
 
-        ArrayList<String> skuList = new ArrayList<String>();
-        skuList.add("premium");
-        Bundle querySkus = new Bundle();
-        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
-
-        Bundle skuDetails = null;
-        try {
-            skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        int response = skuDetails.getInt("RESPONSE_CODE");
-        if (response == 0) {
-            ArrayList<String> responseList
-                    = skuDetails.getStringArrayList("DETAILS_LIST");
-
-            for (String thisResponse : responseList) {
-                String sku = "";
-                String price = "";
-                JSONObject object = null;
-                try {
-                    object = new JSONObject(thisResponse);
-                    sku = object.getString("productId");
-                    price = object.getString("price");
-                    Log.i("Price + id", sku + price);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
-        }
+        });
+
+        mPurchaseFinishedListener
+                = new IabHelper.OnIabPurchaseFinishedListener() {
+            public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+                if (result.isFailure()) {
+                    Log.d(TAG, "Error purchasing: " + result);
+                    return;
+                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
+                    // give user access to premium content and update the UI
+                }
+            }
+        };
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mService != null) {
-            unbindService(mServiceConn);
-        }
+        if (mHelper != null) mHelper.dispose();
+        mHelper = null;
     }
 
     private void setUpLayout() {
@@ -520,6 +503,8 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void getPremium(View view) {
+        mHelper.launchPurchaseFlow(this, SKU_PREMIUM, 10001,
+                mPurchaseFinishedListener, "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
