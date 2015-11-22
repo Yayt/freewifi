@@ -133,6 +133,7 @@ public class MapsActivity extends FragmentActivity {
     private void setUpInAppPurchase() {
         String base64EncodedPublicKey = null;
         mHelper = new IabHelper(this, base64EncodedPublicKey);
+
         mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             public void onIabSetupFinished(IabResult result) {
                 if (!result.isSuccess()) {
@@ -151,9 +152,11 @@ public class MapsActivity extends FragmentActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
                 if (result.isFailure()) {
                     Log.d(TAG, "Error purchasing: " + result);
+                    Toast.makeText(getBaseContext(), "An error occurred", Toast.LENGTH_LONG).show();
                     return;
                 } else if (purchase.getSku().equals(SKU_PREMIUM)) {
-                    // give user access to premium content and update the UI
+                    Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
+                    mIsPremium = true;
                 }
             }
         };
@@ -503,8 +506,12 @@ public class MapsActivity extends FragmentActivity {
     }
 
     public void getPremium(View view) {
-        mHelper.launchPurchaseFlow(this, SKU_PREMIUM, 10001,
-                mPurchaseFinishedListener, "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+        if (!mIsPremium) {
+            mHelper.launchPurchaseFlow(this, SKU_PREMIUM, 10001,
+                    mPurchaseFinishedListener, "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+        } else {
+            Toast.makeText(getBaseContext(), "You are already a premium user!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
