@@ -1,16 +1,11 @@
 package com.wifi.adp.freewifi;
 
 import android.app.AlertDialog;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
-import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,6 +31,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.wifi.adp.freewifi.util.IabHelper;
 import com.wifi.adp.freewifi.util.IabResult;
+import com.wifi.adp.freewifi.util.Inventory;
 import com.wifi.adp.freewifi.util.Purchase;
 
 import org.json.JSONArray;
@@ -84,8 +79,9 @@ public class MapsActivity extends FragmentActivity {
     IabHelper mHelper;
     final String TAG = "IAP";
     final String SKU_PREMIUM = "premium";
-    boolean mIsPremium = false;
+    public boolean mIsPremium = false;
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
+    IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
 
 
     @Override
@@ -131,7 +127,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void setUpInAppPurchase() {
-        String base64EncodedPublicKey = null;
+        String base64EncodedPublicKey = getString(R.string.base64EncodedPublicKey);
         mHelper = new IabHelper(this, base64EncodedPublicKey);
 
         mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
@@ -143,6 +139,10 @@ public class MapsActivity extends FragmentActivity {
                     // Hooray, IAB is fully set up!
                     Log.d(TAG, "Successfully set up IAP:  " + result);
 
+                    //Check if user is premium
+                    if (mHelper != null) mHelper.flagEndAsync();     // flagEndAsync() should be made public
+                    mHelper.queryInventoryAsync(mGotInventoryListener);
+                    if (mHelper != null) mHelper.flagEndAsync();     // flagEndAsync() should be made public
                 }
             }
         });
@@ -152,11 +152,27 @@ public class MapsActivity extends FragmentActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
                 if (result.isFailure()) {
                     Log.d(TAG, "Error purchasing: " + result);
-                    Toast.makeText(getBaseContext(), "An error occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "You are already a premium user!", Toast.LENGTH_LONG).show();
                     return;
                 } else if (purchase.getSku().equals(SKU_PREMIUM)) {
                     Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
                     mIsPremium = true;
+                }
+            }
+        };
+
+        mGotInventoryListener
+                = new IabHelper.QueryInventoryFinishedListener() {
+            public void onQueryInventoryFinished(IabResult result,
+                                                 Inventory inventory) {
+                if (result.isFailure()) {
+                    Toast.makeText(getBaseContext(), "An error occurred, try again!", Toast.LENGTH_LONG).show();
+                } else {
+                    // does the user have the premium upgrade?
+                    mIsPremium = inventory.hasPurchase(SKU_PREMIUM);
+                    if (mIsPremium) {
+                        Toast.makeText(getBaseContext(), "You are a premium user, enjoy!", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         };
