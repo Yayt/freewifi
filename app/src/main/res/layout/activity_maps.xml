@@ -394,6 +394,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:orientation="vertical"
+                    android:onClick="getPremium"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
                     android:paddingTop="50px">
@@ -410,8 +411,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:onClick="getPremium"
-                        android:clickable="true"
                         android:paddingLeft="50px"
                         android:text="@string/getPremium"
                         android:textColor="#919191" />
