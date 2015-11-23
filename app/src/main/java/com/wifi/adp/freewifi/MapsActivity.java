@@ -140,9 +140,11 @@ public class MapsActivity extends FragmentActivity {
                     Log.d(TAG, "Successfully set up IAP:  " + result);
 
                     //Check if user is premium
-                    if (mHelper != null) mHelper.flagEndAsync();     // flagEndAsync() should be made public
+                    if (mHelper != null)
+                        mHelper.flagEndAsync();     // flagEndAsync() should be made public
                     mHelper.queryInventoryAsync(mGotInventoryListener);
-                    if (mHelper != null) mHelper.flagEndAsync();     // flagEndAsync() should be made public
+                    if (mHelper != null)
+                        mHelper.flagEndAsync();     // flagEndAsync() should be made public
                 }
             }
         });
@@ -154,7 +156,9 @@ public class MapsActivity extends FragmentActivity {
                     Log.d(TAG, "Error purchasing: " + result);
                     Toast.makeText(getBaseContext(), "You are already a premium user!", Toast.LENGTH_LONG).show();
                     return;
-                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
+//                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
+                    //TODO Test
+                } else {
                     Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
                     mIsPremium = true;
                 }
@@ -166,11 +170,13 @@ public class MapsActivity extends FragmentActivity {
             public void onQueryInventoryFinished(IabResult result,
                                                  Inventory inventory) {
                 if (result.isFailure()) {
-                    Toast.makeText(getBaseContext(), "An error occurred, try again!", Toast.LENGTH_LONG).show();
+                    Log.d(TAG,"User has not bought any IAPs");
+                    //Toast.makeText(getBaseContext(), "Could not validate premium license!", Toast.LENGTH_LONG).show();
                 } else {
                     // does the user have the premium upgrade?
                     mIsPremium = inventory.hasPurchase(SKU_PREMIUM);
                     if (mIsPremium) {
+                        //TODO: Remove
                         Toast.makeText(getBaseContext(), "You are a premium user, enjoy!", Toast.LENGTH_LONG).show();
                     }
                 }
