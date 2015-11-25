@@ -182,7 +182,6 @@ public class MapsActivity extends FragmentActivity {
                 } else {
                     // does the user have the premium upgrade?
                     mIsPremium = inventory.hasPurchase(SKU_PREMIUM);
-                    mIsPremium = false;
                     setUpAds();
                 }
 
