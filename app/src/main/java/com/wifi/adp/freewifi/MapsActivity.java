@@ -154,11 +154,10 @@ public class MapsActivity extends FragmentActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
                 if (result.isFailure()) {
                     Log.d(TAG, "Error purchasing: " + result);
-                    Toast.makeText(getBaseContext(), "You are already a premium user!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Error purchasing: " + result.toString(), Toast.LENGTH_LONG).show();
                     return;
-//                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
-                    //TODO Test
-                } else {
+                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
+                    Log.d(TAG, "Successfully purchased " + purchase.getSku());
                     Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
                     mIsPremium = true;
                 }
@@ -182,6 +181,23 @@ public class MapsActivity extends FragmentActivity {
                 }
             }
         };
+    }
+
+    //TODO: Test
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+
+        // Pass on the activity result to the helper for handling
+        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+            // not handled, so handle it ourselves (here's where you'd
+            // perform any handling of activity results not related to in-app
+            // billing...
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        else {
+            Log.d(TAG, "onActivityResult handled by IABUtil.");
+        }
     }
 
     @Override
@@ -529,8 +545,12 @@ public class MapsActivity extends FragmentActivity {
 
     public void getPremium(View view) {
         if (!mIsPremium) {
+            if (mHelper != null)
+                mHelper.flagEndAsync();     // flagEndAsync() should be made public
             mHelper.launchPurchaseFlow(this, SKU_PREMIUM, 10001,
                     mPurchaseFinishedListener, "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+            if (mHelper != null)
+                mHelper.flagEndAsync();     // flagEndAsync() should be made public
         } else {
             Toast.makeText(getBaseContext(), "You are already a premium user!", Toast.LENGTH_LONG).show();
         }
