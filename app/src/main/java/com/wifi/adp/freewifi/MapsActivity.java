@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -82,6 +84,9 @@ public class MapsActivity extends FragmentActivity {
     public boolean mIsPremium = false;
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
+
+    //Ads
+    AdView adView;
 
 
     @Override
@@ -225,6 +230,9 @@ public class MapsActivity extends FragmentActivity {
         mMap.setPadding(0, 0, 0, 0);
 
         //TODO fix layout on other resolution devices
+
+        adView = new AdView(this);
+        adView.setAdSize(AdSize.SMART_BANNER);
     }
 
     private void hideInfoBar() {

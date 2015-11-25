@@ -308,7 +308,7 @@
                 android:layout_height="fill_parent"
                 android:divider="#4D000000"
                 android:dividerHeight="1px"
-                android:overScrollMode="never"></ListView>
+                android:overScrollMode="never"/>
         </LinearLayout>
 
         <ScrollView
