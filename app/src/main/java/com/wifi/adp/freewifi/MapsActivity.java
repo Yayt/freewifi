@@ -154,7 +154,7 @@ public class MapsActivity extends FragmentActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
                 if (result.isFailure()) {
                     Log.d(TAG, "Error purchasing: " + result);
-                    Toast.makeText(getBaseContext(), "Error purchasing: " + result.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Error purchasing: " + result.getMessage(), Toast.LENGTH_LONG).show();
                     return;
                 } else if (purchase.getSku().equals(SKU_PREMIUM)) {
                     Log.d(TAG, "Successfully purchased " + purchase.getSku());
