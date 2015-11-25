@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -103,21 +104,21 @@
                     android:src="@drawable/open_wifi_icon" />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/wifiname"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:layout_toLeftOf="@+id/startNavigating"-->
-                    <!--android:layout_toRightOf="@+id/wifilogoicon"-->
-                    <!--android:paddingBottom="20px"-->
-                    <!--android:paddingStart="140px"-->
-                    <!--android:paddingTop="20px"-->
-                    <!--android:maxLines="2"-->
-                    <!--android:scrollHorizontally="true"-->
-                    <!--android:textColor="#00ACAD"-->
-                    <!--android:textSize="70px" />-->
+                <!--android:id="@+id/wifiname"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_toLeftOf="@+id/startNavigating"-->
+                <!--android:layout_toRightOf="@+id/wifilogoicon"-->
+                <!--android:paddingBottom="20px"-->
+                <!--android:paddingStart="140px"-->
+                <!--android:paddingTop="20px"-->
+                <!--android:maxLines="2"-->
+                <!--android:scrollHorizontally="true"-->
+                <!--android:textColor="#00ACAD"-->
+                <!--android:textSize="70px" />-->
 
                 <com.wifi.adp.freewifi.AutoResizeTextView
                     android:id="@+id/wifiname"
@@ -128,10 +129,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toLeftOf="@+id/startNavigating"
                     android:layout_toRightOf="@+id/wifilogoicon"
-                    android:paddingStart="140px"
                     android:maxHeight="215px"
+                    android:paddingStart="140px"
                     android:textColor="#00ACAD"
-                    android:textSize="70px"/>
+                    android:textSize="70px" />
 
                 <LinearLayout
                     android:id="@+id/startNavigating"
@@ -302,13 +303,35 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <ListView
-                android:id="@+id/list"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:divider="#4D000000"
-                android:dividerHeight="1px"
-                android:overScrollMode="never"/>
+                android:layout_height="match_parent"
+                tools:context=".MyActivity"
+                tools:ignore="MergeRootFrame">
+
+                <ListView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:divider="#4D000000"
+                    android:dividerHeight="1px"
+                    android:overScrollMode="never" />
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/ad_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:visibility="gone"
+                    android:layout_centerHorizontal="true"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/banner_ad_unit_id" />
+            </LinearLayout>
         </LinearLayout>
 
         <ScrollView
@@ -393,8 +416,8 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    android:orientation="vertical"
                     android:onClick="getPremium"
+                    android:orientation="vertical"
                     android:paddingBottom="50px"
                     android:paddingLeft="50px"
                     android:paddingTop="50px">

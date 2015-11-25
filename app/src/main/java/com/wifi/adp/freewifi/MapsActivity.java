@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.CameraUpdate;
@@ -174,7 +176,7 @@ public class MapsActivity extends FragmentActivity {
             public void onQueryInventoryFinished(IabResult result,
                                                  Inventory inventory) {
                 if (result.isFailure()) {
-                    Log.d(TAG,"User has not bought any IAPs");
+                    Log.d(TAG, "User has not bought any IAPs");
                     //Toast.makeText(getBaseContext(), "Could not validate premium license!", Toast.LENGTH_LONG).show();
                 } else {
                     // does the user have the premium upgrade?
@@ -184,6 +186,7 @@ public class MapsActivity extends FragmentActivity {
                         Toast.makeText(getBaseContext(), "You are a premium user, enjoy!", Toast.LENGTH_LONG).show();
                     }
                 }
+                setUpAds();
             }
         };
     }
@@ -199,8 +202,7 @@ public class MapsActivity extends FragmentActivity {
             // perform any handling of activity results not related to in-app
             // billing...
             super.onActivityResult(requestCode, resultCode, data);
-        }
-        else {
+        } else {
             Log.d(TAG, "onActivityResult handled by IABUtil.");
         }
     }
@@ -230,9 +232,38 @@ public class MapsActivity extends FragmentActivity {
         mMap.setPadding(0, 0, 0, 0);
 
         //TODO fix layout on other resolution devices
+    }
 
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.SMART_BANNER);
+    private void setUpAds() {
+        adView = (AdView) findViewById(R.id.ad_view);
+        adView.setVisibility(View.GONE);
+
+        if (!mIsPremium) {
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    Log.d("ads", "Ad banner finished loading!");
+                    adView.setVisibility(View.GONE);
+                    adView.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAdClosed() {
+                    setUpMapIfNeeded();
+                }
+            });
+
+            // Create an ad request. Check your logcat output for the hashed device ID to
+            // get test ads on a physical device. e.g.
+            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice("78B87EADBBC60B0F8E2F71A9C2C70A60")
+                    .build();
+
+            // Start loading the ad in the background.
+            adView.loadAd(adRequest);
+        }
     }
 
     private void hideInfoBar() {
