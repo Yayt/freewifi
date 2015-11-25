@@ -167,6 +167,7 @@ public class MapsActivity extends FragmentActivity {
                     Log.d(TAG, "Successfully purchased " + purchase.getSku());
                     Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
                     mIsPremium = true;
+                    setUpAds();
                 }
             }
         };
@@ -181,17 +182,14 @@ public class MapsActivity extends FragmentActivity {
                 } else {
                     // does the user have the premium upgrade?
                     mIsPremium = inventory.hasPurchase(SKU_PREMIUM);
-                    if (mIsPremium) {
-                        //TODO: Remove
-                        Toast.makeText(getBaseContext(), "You are a premium user, enjoy!", Toast.LENGTH_LONG).show();
-                    }
+                    mIsPremium = false;
+                    setUpAds();
                 }
-                setUpAds();
+
             }
         };
     }
 
-    //TODO: Test
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
@@ -236,7 +234,11 @@ public class MapsActivity extends FragmentActivity {
 
     private void setUpAds() {
         adView = (AdView) findViewById(R.id.ad_view);
-        adView.setVisibility(View.GONE);
+        if (mIsPremium) {
+            //Remove the adView if the user is a premium user
+            LinearLayout linLay = (LinearLayout) findViewById(R.id.container);
+            linLay.removeView(adView);
+        }
 
         if (!mIsPremium) {
             adView.setAdListener(new AdListener() {
@@ -256,7 +258,6 @@ public class MapsActivity extends FragmentActivity {
             // Create an ad request. Check your logcat output for the hashed device ID to
             // get test ads on a physical device. e.g.
             // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice("78B87EADBBC60B0F8E2F71A9C2C70A60")
                     .build();
