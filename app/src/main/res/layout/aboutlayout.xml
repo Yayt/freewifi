@@ -82,11 +82,12 @@
                     android:textSize="36px"
                     android:textStyle="italic" />
 
+                <!--TODO: remove duck-->
                 <LinearLayout
+                    android:id="@+id/dialog_layout_root2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:id="@+id/dialog_layout_root2"
                     android:layout_below="@+id/fourth_text"
                     android:orientation="horizontal">
 
@@ -102,13 +103,14 @@
                         android:id="@+id/duc_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10px"
                         android:layout_gravity="center_vertical"
+                        android:paddingTop="10px"
                         android:text="@string/nguyen"
                         android:textColor="#ffffff"
                         android:textSize="30px" />
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/five_text"
                     android:layout_width="wrap_content"
@@ -119,6 +121,7 @@
                     android:text="@string/names"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
+
                 <TextView
                     android:id="@+id/six_text"
                     android:layout_width="wrap_content"
@@ -130,6 +133,7 @@
                     android:textColor="#ffffff"
                     android:textSize="36px"
                     android:textStyle="italic" />
+
                 <TextView
                     android:id="@+id/seven_text"
                     android:layout_width="wrap_content"
@@ -139,6 +143,7 @@
                     android:text="@string/supervisorname"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
+
                 <TextView
                     android:id="@+id/ei_text"
                     android:layout_width="wrap_content"

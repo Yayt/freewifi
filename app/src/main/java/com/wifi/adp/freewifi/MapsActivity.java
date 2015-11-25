@@ -21,7 +21,6 @@ import android.widget.ViewAnimator;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -93,6 +92,8 @@ public class MapsActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TODO: Add counter for amount of times opened the app
+        //TODO: Create image assets for all screen resolutions
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
@@ -116,6 +117,8 @@ public class MapsActivity extends FragmentActivity {
                 return false;
             }
         });
+
+        //On map click, hide infobar.
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latlong) {
@@ -207,8 +210,19 @@ public class MapsActivity extends FragmentActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (adView != null) {
+            adView.destroy();
+        }
         if (mHelper != null) mHelper.dispose();
         mHelper = null;
+    }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
     }
 
     private void setUpLayout() {
@@ -257,6 +271,7 @@ public class MapsActivity extends FragmentActivity {
             // Create an ad request. Check your logcat output for the hashed device ID to
             // get test ads on a physical device. e.g.
             // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+            //TODO: Set the location of the request to helsinki
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice("78B87EADBBC60B0F8E2F71A9C2C70A60")
                     .build();
@@ -302,6 +317,9 @@ public class MapsActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
         setUpMapIfNeeded();
         adapter.notifyDataSetChanged();
         if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
@@ -672,9 +690,6 @@ public class MapsActivity extends FragmentActivity {
                         lineOptions.addAll(points);
                         lineOptions.width(10);
                         lineOptions.color(0x550000ff);
-
-                        //TODO Check if user has internet, if not, estimate distance
-                        //openInfoBar(points);
                     }
 
                     //draw and remove previous polyline
