@@ -72,4 +72,6 @@
 
     <!--advertisments stuff-->
     <string name="banner_ad_unit_id">ca-app-pub-1463265183392872/7979125943</string>
+    <string name="imperial">Imperial</string>
+    <string name="metrictext">Metric</string>
 </resources>

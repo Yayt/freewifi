@@ -179,7 +179,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#F18626"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp">
 
                 <ImageButton
                     android:id="@+id/filterbutton"
@@ -187,9 +189,7 @@
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="3dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
                     android:adjustViewBounds="true"
                     android:background="@null"
                     android:onClick="openFilters"
@@ -206,7 +206,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
-
 
                     <LinearLayout
                         android:id="@+id/alphabeticSortBox"

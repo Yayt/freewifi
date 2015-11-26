@@ -18,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -36,12 +35,9 @@ import com.wifi.adp.freewifi.util.IabHelper;
 import com.wifi.adp.freewifi.util.IabResult;
 import com.wifi.adp.freewifi.util.Inventory;
 import com.wifi.adp.freewifi.util.Purchase;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -103,10 +99,12 @@ public class MapsActivity extends FragmentActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                //Set old marker to normal icon
                 if (firstClick) {
                     currentMarker.setIcon(BitmapDescriptorFactory.fromAsset("open_wifi_icon.png"));
                 }
                 firstClick = true;
+
                 currentMarker = marker;
                 marker.setIcon(BitmapDescriptorFactory.fromAsset("icon_selected.png"));
 
@@ -166,7 +164,6 @@ public class MapsActivity extends FragmentActivity {
                 if (result.isFailure()) {
                     Log.d(TAG, "Error purchasing: " + result);
                     Toast.makeText(getBaseContext(), "Error purchasing: " + result.getMessage(), Toast.LENGTH_LONG).show();
-                    return;
                 } else if (purchase.getSku().equals(SKU_PREMIUM)) {
                     Log.d(TAG, "Successfully purchased " + purchase.getSku());
                     Toast.makeText(getBaseContext(), "Thanks for your support!", Toast.LENGTH_LONG).show();
@@ -238,19 +235,10 @@ public class MapsActivity extends FragmentActivity {
         TextView autoResizeTextView = (TextView) findViewById(R.id.wifinames);
         autoResizeTextView.setMinLines(1);
         autoResizeTextView.setMaxLines(2);
-//        autoResizeTextView.setMinTextSize(16 * getResources().getDisplayMetrics().density);
-//        autoResizeTextView.setTextSize(7 * getResources().getDisplayMetrics().density);
-
-        //fix textsize in listview
-        View view = LayoutInflater.from(getApplication()).inflate(R.layout.listitem, null);
-        autoResizeTextView = (TextView) view.findViewById(R.id.nameText);
-//        autoResizeTextView.setMinTextSize(16 * getResources().getDisplayMetrics().density);
-//        autoResizeTextView.setTextSize(16 * getResources().getDisplayMetrics().density);
 
         //TODO set google watermark to a nice place and still remove the right buttons
         mMap.setPadding(0, 0, 0, 0);
 
-        //TODO fix layout on other resolution devices
     }
 
     private void setUpAds() {
@@ -303,6 +291,7 @@ public class MapsActivity extends FragmentActivity {
         RelativeLayout infobar = (RelativeLayout) findViewById(R.id.infobar);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) infobar.getLayoutParams();
         openedInfoBar = true;
+
         //Use wrap_content
         params.height = -2;
 //        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
@@ -330,7 +319,7 @@ public class MapsActivity extends FragmentActivity {
         }
         setUpMapIfNeeded();
         adapter.notifyDataSetChanged();
-        if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
+        if (mMyLocation != null && !mMyLocationCentering) { // Getting device GPS and focus
             mMyLocationCentering = true;
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
             mMap.animateCamera(cameraUpdate);
@@ -352,7 +341,6 @@ public class MapsActivity extends FragmentActivity {
 
     private void setUpMap() {
         //json read
-        String json = null;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(this.getAssets().open("inout_wlan.json")));
             String line;
@@ -367,10 +355,8 @@ public class MapsActivity extends FragmentActivity {
                 Marker thisMarker = mMap.addMarker(thisMarkerOptions);
                 wifiObjects.add(new WifiObject(i, ja.getString("name_en"), ja.getDouble("latitude"), ja.getDouble("longitude"), 0, thisMarker));
             }
-        } catch (IOException ex) {
+        } catch (IOException | JSONException ex) {
             ex.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
 
         //Add own location
@@ -383,7 +369,7 @@ public class MapsActivity extends FragmentActivity {
 
                 //Update listview with new distances
                 adapter.notifyDataSetChanged();
-                if (mMyLocation != null && mMyLocationCentering == false) { // Getting device GPS and focus
+                if (mMyLocation != null && !mMyLocationCentering) { // Getting device GPS and focus
                     mMyLocationCentering = true;
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mMyLocation.getLatitude(), mMyLocation.getLongitude()), 14.0f);
                     mMap.animateCamera(cameraUpdate);
@@ -509,7 +495,7 @@ public class MapsActivity extends FragmentActivity {
 
     public void sendFeedback(View view) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto", "kevinmarczyk@gmail.com", null));
+                "mailto", "kevinmarczykapps@gmail.com", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback Wifi Helsinki");
         startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
@@ -517,10 +503,10 @@ public class MapsActivity extends FragmentActivity {
     public void switchUnits(View view) {
         TextView unitText = (TextView) findViewById(R.id.unitOfLengthUsed);
         if (unitText.getText().equals("Metric")) {
-            unitText.setText("Imperial");
+            unitText.setText(R.string.imperial);
             useMetric = false;
         } else {
-            unitText.setText("Metric");
+            unitText.setText(R.string.metrictext);
             useMetric = true;
         }
         if (openedInfoBar) {
@@ -671,9 +657,8 @@ public class MapsActivity extends FragmentActivity {
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
 
 
-            ArrayList<LatLng> points = null;
+            ArrayList<LatLng> points;
             PolylineOptions lineOptions = null;
-            MarkerOptions markerOptions = new MarkerOptions();
 
             if (result != null) {
                 if (result.size() != 0) {
@@ -715,14 +700,6 @@ public class MapsActivity extends FragmentActivity {
 
     public void showWifiList() {
         listView = (ListView) findViewById(R.id.list);
-        String[] names = new String[wifiObjects.size()];
-        double[] distances = new double[wifiObjects.size()];
-
-        for (int i = 0; i < wifiObjects.size(); i++) {
-            names[i] = wifiObjects.get(i).getName_en().toUpperCase();
-        }
-        //Old standard ArrayAdapter
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, R.id.nameText, names);
 
         //Custom ArrayAdapter which is awesome
         adapter = new WifiListAdapter(this, R.layout.listitem, wifiObjects);
