@@ -13,53 +13,58 @@
         android:id="@+id/tabbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.8"
         android:baselineAligned="false"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:divider="@drawable/bar_icon_separator"
         android:orientation="horizontal"
-        android:paddingBottom="9dp"
-        android:paddingTop="9dp"
         android:showDividers="middle">
 
         <ImageButton
             android:id="@+id/MapViewButton"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@null"
             android:foregroundGravity="center_horizontal"
             android:onClick="switchToMap"
             android:scaleType="fitCenter"
-            android:src="@drawable/map_icon"></ImageButton>
+            android:src="@drawable/map_icon" />
 
         <ImageButton
             android:id="@+id/listViewButton"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center_vertical"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@null"
             android:onClick="switchToList"
             android:scaleType="fitCenter"
-            android:src="@drawable/list_icon"></ImageButton>
+            android:src="@drawable/list_icon" />
 
         <ImageButton
             android:id="@+id/settingsButton"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@null"
             android:onClick="switchToSettings"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_icon"></ImageButton>
+            android:src="@drawable/settings_icon" />
 
     </LinearLayout>
 
@@ -82,7 +87,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="top"
                 tools:context=".MapsActivity"
-                tools:layout="@layout/activity_maps"></fragment>
+                tools:layout="@layout/activity_maps" />
 
             <RelativeLayout
                 android:id="@+id/infobar"
@@ -165,7 +170,6 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
 
         <LinearLayout
             android:id="@+id/wifilistview"
