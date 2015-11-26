@@ -40,6 +40,7 @@ import com.wifi.adp.freewifi.util.Purchase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -234,10 +235,17 @@ public class MapsActivity extends FragmentActivity {
         alphabeticSortImage = (ImageView) findViewById(R.id.alphabeticSortImage);
         distanceSortImage = (ImageView) findViewById(R.id.distanceSortImage);
 
-        AutoResizeTextView autoResizeTextView = (AutoResizeTextView) findViewById(R.id.wifiname);
+        TextView autoResizeTextView = (TextView) findViewById(R.id.wifinames);
         autoResizeTextView.setMinLines(1);
         autoResizeTextView.setMaxLines(2);
-        autoResizeTextView.setMinTextSize(50);
+//        autoResizeTextView.setMinTextSize(16 * getResources().getDisplayMetrics().density);
+//        autoResizeTextView.setTextSize(7 * getResources().getDisplayMetrics().density);
+
+        //fix textsize in listview
+        View view = LayoutInflater.from(getApplication()).inflate(R.layout.listitem, null);
+        autoResizeTextView = (TextView) view.findViewById(R.id.nameText);
+//        autoResizeTextView.setMinTextSize(16 * getResources().getDisplayMetrics().density);
+//        autoResizeTextView.setTextSize(16 * getResources().getDisplayMetrics().density);
 
         //TODO set google watermark to a nice place and still remove the right buttons
         mMap.setPadding(0, 0, 0, 0);
@@ -299,7 +307,7 @@ public class MapsActivity extends FragmentActivity {
         params.height = -2;
 //        Log.i("INFOBARHEIGHT", Integer.toString(infobar.getHeight()));
 
-        AutoResizeTextView wifiNameText = (AutoResizeTextView) findViewById(R.id.wifiname);
+        TextView wifiNameText = (TextView) findViewById(R.id.wifinames);
         wifiNameText.setText(currentMarker.getTitle().toUpperCase());
 
         //double distance = SphericalUtil.computeLength(path);

@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#F9F3E6"
-            android:paddingBottom="50px"
+            android:paddingBottom="16dp"
             android:src="@drawable/logo_main" />
 
         <ImageView
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#F9F3E6"
-            android:paddingTop="50px"
+            android:paddingTop="16dp"
             android:src="@drawable/logotext" />
 
     </LinearLayout>

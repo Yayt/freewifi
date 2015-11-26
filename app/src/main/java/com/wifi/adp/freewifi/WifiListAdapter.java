@@ -32,7 +32,7 @@ public class WifiListAdapter extends ArrayAdapter<WifiObject> {
         WifiObject thisWifiObject = wifiObjects.get(position);
 
         if (thisWifiObject != null) {
-            AutoResizeTextView tv = (AutoResizeTextView) targetView.findViewById(R.id.nameText);
+            TextView tv = (TextView) targetView.findViewById(R.id.nameText);
             tv.setText(thisWifiObject.getName_en().toUpperCase());
 
             //Get the unit of length used

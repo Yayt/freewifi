@@ -17,8 +17,8 @@
         android:baselineAligned="false"
         android:divider="@drawable/bar_icon_separator"
         android:orientation="horizontal"
-        android:paddingBottom="27px"
-        android:paddingTop="27px"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
         android:showDividers="middle">
 
         <ImageButton
@@ -100,7 +100,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
-                    android:paddingLeft="40px"
+                    android:paddingLeft="13dp"
                     android:src="@drawable/open_wifi_icon" />
 
                 <!--<TextView-->
@@ -120,8 +120,8 @@
                 <!--android:textColor="#00ACAD"-->
                 <!--android:textSize="70px" />-->
 
-                <com.wifi.adp.freewifi.AutoResizeTextView
-                    android:id="@+id/wifiname"
+                <TextView
+                    android:id="@+id/wifinames"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -129,10 +129,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toLeftOf="@+id/startNavigating"
                     android:layout_toRightOf="@+id/wifilogoicon"
-                    android:maxHeight="215px"
-                    android:paddingStart="140px"
+                    android:maxHeight="71dp"
+                    android:paddingStart="46dp"
                     android:textColor="#00ACAD"
-                    android:textSize="70px" />
+                    android:textSize="23dp" />
 
                 <LinearLayout
                     android:id="@+id/startNavigating"
@@ -143,10 +143,10 @@
                     android:layout_weight="1"
                     android:onClick="startNavigation"
                     android:orientation="vertical"
-                    android:paddingBottom="25px"
-                    android:paddingLeft="20px"
-                    android:paddingRight="50px"
-                    android:paddingTop="25px">
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp">
 
                     <ImageView
                         android:layout_width="30dp"
@@ -160,7 +160,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#00ACAD"
-                        android:textSize="48px" />
+                        android:textSize="16dp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -184,12 +184,12 @@
                 <ImageButton
                     android:id="@+id/filterbutton"
                     android:layout_width="wrap_content"
-                    android:layout_height="68px"
+                    android:layout_height="22dp"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="10px"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="10px"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
                     android:adjustViewBounds="true"
                     android:background="@null"
                     android:onClick="openFilters"
@@ -216,16 +216,16 @@
                         android:background="@drawable/deselectedsort"
                         android:onClick="sortAlphabetic"
                         android:orientation="horizontal"
-                        android:paddingEnd="25px"
-                        android:paddingStart="25px">
+                        android:paddingEnd="8dp"
+                        android:paddingStart="8dp">
 
                         <TextView
                             android:id="@+id/alphabeticSort"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="10px"
-                            android:layout_marginStart="10px"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginStart="3dp"
                             android:text="A - Z"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
@@ -268,16 +268,16 @@
                         android:layout_weight="1"
                         android:background="@drawable/deselectedsort"
                         android:onClick="sortDistance"
-                        android:paddingEnd="25px"
-                        android:paddingStart="25px">
+                        android:paddingEnd="8dp"
+                        android:paddingStart="8dp">
 
                         <TextView
                             android:id="@+id/distanceSort"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="10px"
-                            android:layout_marginStart="10px"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginStart="3dp"
                             android:text="DIST"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold" />
@@ -354,9 +354,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:orientation="horizontal"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="100px"
-                    android:paddingTop="50px">
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="33dp"
+                    android:paddingTop="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -378,7 +378,7 @@
                     android:layout_height="wrap_content"
                     android:background="#3a363b"
                     android:fontFamily="sans-serif"
-                    android:paddingLeft="100px"
+                    android:paddingLeft="33dp"
                     android:text="@string/main_settings"
                     android:textColor="#b2b2b2" />
 
@@ -389,15 +389,15 @@
                     android:clickable="true"
                     android:onClick="switchUnits"
                     android:orientation="vertical"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="50px"
-                    android:paddingTop="50px">
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="@string/UnitOfLength"
                         android:textColor="#FFFFFF" />
 
@@ -406,7 +406,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="@string/metric"
                         android:textColor="#919191" />
                 </LinearLayout>
@@ -418,15 +418,15 @@
                     android:clickable="true"
                     android:onClick="getPremium"
                     android:orientation="vertical"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="50px"
-                    android:paddingTop="50px">
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="@string/disableAds"
                         android:textColor="#FFFFFF" />
 
@@ -434,7 +434,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="@string/getPremium"
                         android:textColor="#919191" />
                 </LinearLayout>
@@ -446,15 +446,15 @@
                     android:clickable="true"
                     android:onClick="sendFeedback"
                     android:orientation="vertical"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="50px"
-                    android:paddingTop="50px">
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="Feedback"
                         android:textColor="#FFFFFF" />
 
@@ -462,7 +462,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:paddingLeft="50px"
+                        android:paddingLeft="16dp"
                         android:text="Help us to improve"
                         android:textColor="#919191" />
                 </LinearLayout>
@@ -474,9 +474,9 @@
                     android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:onClick="openPlayStore"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="100px"
-                    android:paddingTop="50px"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="33dp"
+                    android:paddingTop="16dp"
                     android:text="Rate the app"
                     android:textColor="#FFFFFF" />
 
@@ -486,7 +486,7 @@
                     android:layout_height="wrap_content"
                     android:background="#3a363b"
                     android:fontFamily="sans-serif"
-                    android:paddingLeft="100px"
+                    android:paddingLeft="33dp"
                     android:text="ABOUT"
                     android:textColor="#b2b2b2" />
 
@@ -497,9 +497,9 @@
                     android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:onClick="openAboutUs"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="100px"
-                    android:paddingTop="50px"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="33dp"
+                    android:paddingTop="16dp"
                     android:text="About us"
                     android:textColor="#FFFFFF" />
 
@@ -510,9 +510,9 @@
                     android:clickable="true"
                     android:fontFamily="sans-serif"
                     android:onClick="openPrivacyPolicy"
-                    android:paddingBottom="50px"
-                    android:paddingLeft="100px"
-                    android:paddingTop="50px"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="33dp"
+                    android:paddingTop="16dp"
                     android:text="Privacy Policy"
                     android:textColor="#FFFFFF" />
 
